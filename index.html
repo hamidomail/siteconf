@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Academic Conference 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #020617;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(15,23,42,0.85);
+      --shadow-card: 0 16px 30px rgba(15,23,42,0.65);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 22px 20px 40px;
+    }
+
+    .top-bar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899, #f97316);
+      opacity: 0.9;
+      z-index: 40;
+    }
+
+    .bg-orbit {
+      position: fixed;
+      inset: -10% -30% auto auto;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(56,189,248,0.45), transparent 70%);
+      opacity: 0.22;
+      filter: blur(4px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 4px;
+      z-index: 30;
+      margin-bottom: 26px;
+    }
+
+    .nav-inner {
+      background: rgba(15,23,42,0.82);
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.15);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.85);
+      backdrop-filter: blur(18px);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-pill {
+      width: 30px;
+      height: 30px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 0, #38bdf8, #a855f7 40%, #020617 100%);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.8), 0 10px 25px rgba(8,47,73,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-title-main {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .nav-title-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    .nav-links a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(148,163,184,0.12);
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-outline {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      padding: 7px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      background: radial-gradient(circle at top, rgba(148,163,184,0.15), rgba(15,23,42,0.85));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: border-color 0.18s ease, transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-outline span.icon {
+      font-size: 14px;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(8,47,73,0.9);
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      border: none;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      color: #0b1120;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(37,99,235,0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.95);
+      filter: saturate(1.12);
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 38px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 6px 9px 6px 6px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.2), rgba(15,23,42,0.9));
+      border: 1px solid rgba(148,163,184,0.35);
+      width: fit-content;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.95);
+    }
+
+    .hero-badge-tag {
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      background: linear-gradient(135deg, rgba(56,189,248,0.13), rgba(129,140,248,0.16));
+      border: 1px solid rgba(148,163,184,0.45);
+    }
+
+    .hero-badge-text {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34,197,94,0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 3.1vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title span.accent {
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 18px rgba(56,189,248,0.35);
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero-meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.3);
+    }
+
+    .hero-meta-pill strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-note strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-stat-card {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,0.28);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.98), rgba(15,23,42,0.9));
+      box-shadow: 0 10px 22px rgba(15,23,42,0.85);
+    }
+
+    .hero-stat-label {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 10px;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .hero-stat-value {
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .hero-stat-sub {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* HERO RIGHT CARD */
+    .hero-right {
+      position: relative;
+    }
+
+    .conference-card {
+      position: relative;
+      border-radius: 24px;
+      padding: 16px 16px 14px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.32), rgba(15,23,42,0.98) 52%, #020617 100%);
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .card-main {
+      padding-right: 8px;
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .card-badge {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #38bdf8;
+    }
+
+    .card-kicker {
+      font-size: 11px;
+      color: #cbd5f5;
+      text-transform: uppercase;
+      letter-spacing: 0.19em;
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: #cbd5f5;
+      margin-bottom: 10px;
+    }
+
+    .card-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 11px;
+    }
+
+    .card-meta-pill {
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: rgba(15,23,42,0.84);
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    .card-countdown {
+      font-size: 11px;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-countdown span.badge {
+      border-radius: 999px;
+      padding: 3px 7px;
+      font-size: 10px;
+      background: rgba(22,163,74,0.2);
+      border: 1px solid rgba(22,163,74,0.7);
+      color: #bbf7d0;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .card-side {
+      position: relative;
+      border-radius: 18px;
+      padding: 11px 11px 10px;
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(15,23,42,0.96));
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .card-side-header {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .timeline {
+      font-size: 11px;
+      color: #cbd5f5;
+      margin-bottom: 10px;
+    }
+
+    .timeline strong {
+      color: #e5e7eb;
+    }
+
+    .side-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .side-chip {
+      font-size: 10px;
+      border-radius: 999px;
+      padding: 3px 8px;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: #9ca3af;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .track-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .track-pill {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.15);
+      color: #bae6fd;
+      border: 1px solid rgba(56,189,248,0.6);
+    }
+
+    .side-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    .side-footer strong {
+      color: #e5e7eb;
+    }
+
+    .side-cta {
+      border-radius: 999px;
+      padding: 4px 7px;
+      font-size: 10px;
+      background: rgba(8,47,73,0.95);
+      color: #e0f2fe;
+      border: 1px solid rgba(56,189,248,0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .side-cta span.dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .info-card {
+      border-radius: var(--radius-md);
+      padding: 10px 11px 11px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(31,41,55,1);
+      box-shadow: 0 18px 36px rgba(15,23,42,0.85);
+      font-size: 13px;
+    }
+
+    .info-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .info-title {
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+
+    .info-text {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    ul {
+      padding-left: 16px;
+      margin-top: 3px;
+    }
+
+    ul li {
+      margin-bottom: 3px;
+    }
+
+    .split-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.25fr);
+      gap: 16px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: #9ca3af;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .pill.main {
+      background: rgba(56,189,248,0.16);
+      color: #e0f2fe;
+      border-color: rgba(56,189,248,0.7);
+    }
+
+    .schedule {
+      border-radius: var(--radius-lg);
+      padding: 11px 12px;
+      background: rgba(2,6,23,0.96);
+      border: 1px solid rgba(15,23,42,1);
+      box-shadow: 0 20px 40px rgba(15,23,42,0.95);
+      font-size: 12px;
+    }
+
+    .schedule-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .schedule-title {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .schedule-day {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .schedule-line {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 10px;
+      padding: 6px 0;
+      border-top: 1px solid rgba(31,41,55,1);
+    }
+
+    .time {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .slot-title {
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .slot-meta {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .accent-pill {
+      font-size: 10px;
+      border-radius: 999px;
+      padding: 2px 7px;
+      border: 1px solid rgba(56,189,248,0.6);
+      color: #e0f2fe;
+      background: rgba(8,47,73,0.9);
+      margin-left: 6px;
+    }
+
+    .footer {
+      margin-top: 12px;
+      padding: 16px 0 6px;
+      font-size: 11px;
+      color: #6b7280;
+      border-top: 1px solid rgba(31,41,55,1);
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-color: rgba(148,163,184,0.6);
+      text-underline-offset: 3px;
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .card-grid {
+        grid-template-columns: minmax(0, 1.3fr);
+      }
+      .split-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        margin-top: 6px;
+      }
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .shell {
+        padding-inline: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="top-bar"></div>
+  <div class="bg-orbit"></div>
+
+  <main class="shell">
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="nav-left">
+          <div class="logo-pill">AC</div>
+          <div class="nav-title">
+            <span class="nav-title-main">AcademicConf 2025</span>
+            <span class="nav-title-sub">International Conference on Data & AI</span>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#tracks">Tracks</a>
+          <a href="#speakers">Speakers</a>
+          <a href="#program">Program</a>
+        </nav>
+        <div class="nav-cta">
+          <button class="btn-outline">
+            <span class="icon">⬤</span>
+            Call for Papers
+          </button>
+          <button class="btn-primary">
+            Register
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="about">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="hero-badge-tag">Edition 2025</span>
+          <div class="hero-badge-text">
+            <span class="hero-badge-dot"></span>
+            Hybrid conference · On-site & online
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          A modern academic conference focusing on
+          <span class="accent">data, artificial intelligence and decision‑making</span>.
+        </h1>
+
+        <div class="hero-meta-row">
+          <div class="hero-meta-pill">
+            <strong>November 12–14, 2025</strong> · Central University, Algiers
+          </div>
+          <div class="hero-meta-pill">
+            <strong>Submission</strong> · before July 15, 2025
+          </div>
+        </div>
+
+        <div class="hero-cta-row">
+          <button class="btn-primary">
+            Submit a paper
+            <span>↗</span>
+          </button>
+          <span class="hero-note">
+            <strong>Peer‑reviewed</strong> papers, published in indexed proceedings.
+          </span>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat-card">
+            <div class="hero-stat-label">Audience</div>
+            <div class="hero-stat-value">Researchers, PhD students, practitioners</div>
+            <div class="hero-stat-sub">Data, AI, decision support systems</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-label">Format</div>
+            <div class="hero-stat-value">Keynotes, sessions & workshops</div>
+            <div class="hero-stat-sub">Panels, posters, industry demos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO CARD -->
+      <div class="hero-right">
+        <div class="conference-card">
+          <div class="card-grid">
+            <div class="card-main">
+              <div class="card-header-row">
+                <span class="card-badge">
+                  <span class="card-badge-dot"></span>
+                  In‑person & online
+                </span>
+              </div>
+              <div class="card-kicker">International conference</div>
+              <div class="card-title">Data, Intelligence & Decision 2025</div>
+              <div class="card-subtitle">
+                Towards responsible and explainable intelligent systems.
+              </div>
+
+              <div class="card-meta-row">
+                <span class="card-meta-pill">Double‑blind review</span>
+                <span class="card-meta-pill">Indexed proceedings</span>
+                <span class="card-meta-pill">Invited keynotes</span>
+              </div>
+
+              <div class="card-countdown">
+                <span class="badge">Open call</span>
+                Submit full and short papers before <strong>July 15, 2025</strong>.
+              </div>
+            </div>
+
+            <aside class="card-side">
+              <div class="card-side-header">Important dates · 2025</div>
+              <div class="timeline">
+                <strong>July 15</strong> · Paper submission<br>
+                <strong>September 15</strong> · Notification<br>
+                <strong>October 5</strong> · Camera‑ready
+              </div>
+
+              <div class="side-meta">
+                <span class="side-chip">LaTeX & Word templates</span>
+                <span class="side-chip">Presentations in EN & FR</span>
+              </div>
+
+              <div class="track-pills">
+                <span class="track-pill">Data Engineering</span>
+                <span class="track-pill">Machine Learning</span>
+                <span class="track-pill">Business Intelligence</span>
+              </div>
+
+              <div class="side-footer">
+                <span>
+                  <strong>Indexing</strong> · major scientific series targeted
+                </span>
+                <span class="side-cta">
+                  <span class="dot"></span>
+                  Author guidelines
+                </span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKS / INFO -->
+    <section class="section" id="tracks">
+      <div class="section-header">
+        <h2 class="section-title">Tracks & scope</h2>
+        <p class="section-sub">Clear topics to simplify paper submission.</p>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="info-label">Track 1</div>
+          <div class="info-title">Data Engineering & Warehousing</div>
+          <p class="info-text">
+            Modeling, ETL/ELT, data quality, OLAP optimization, cloud and hybrid architectures.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-label">Track 2</div>
+          <div class="info-title">AI, Machine Learning & NLP</div>
+          <p class="info-text">
+            Supervised and unsupervised learning, deep learning, language models, trustworthy and responsible AI.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-label">Track 3</div>
+          <div class="info-title">Decision Support & Applications</div>
+          <p class="info-text">
+            Dashboards, decision support systems, AI for industry, health, energy and smart cities.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SPEAKERS / SPONSORS / PROGRAM -->
+    <section class="section" id="speakers">
+      <div class="section-header">
+        <h2 class="section-title">Speakers & ecosystem</h2>
+        <p class="section-sub">An academic conference connected to industry and society.</p>
+      </div>
+
+      <div class="split-row">
+        <div class="info-card">
+          <div class="info-label">Invited keynotes</div>
+          <div class="info-title">Leading academics & industry experts</div>
+          <p class="info-text">
+            Talks on current trends: generative AI, MLOps, data governance and decision support systems.
+          </p>
+          <div class="pill-row">
+            <span class="pill main">Generative AI keynote</span>
+            <span class="pill">Industry panel</span>
+            <span class="pill">Doctoral consortium</span>
+          </div>
+
+          <div class="info-label" style="margin-top: 10px;">Partners & sponsors</div>
+          <p class="info-text">
+            Universities, research labs, tech companies and data & AI startups.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Research laboratories</span>
+            <span class="pill">Software industry</span>
+            <span class="pill">Public organizations</span>
+          </div>
+        </div>
+
+        <div class="schedule" id="program">
+          <div class="schedule-header">
+            <span class="schedule-title">Program snapshot</span>
+            <span class="schedule-day">Day 1 (example)</span>
+          </div>
+
+          <div class="schedule-line">
+            <div class="time">09:00</div>
+            <div>
+              <div class="slot-title">Opening & welcome remarks</div>
+              <div class="slot-meta">Organizing committee and institutional partners</div>
+            </div>
+          </div>
+
+          <div class="schedule-line">
+            <div class="time">10:00</div>
+            <div>
+              <div class="slot-title">
+                Plenary talk · Responsible AI
+                <span class="accent-pill">Keynote</span>
+              </div>
+              <div class="slot-meta">International guest speaker · Q&A</div>
+            </div>
+          </div>
+
+          <div class="schedule-line">
+            <div class="time">14:00</div>
+            <div>
+              <div class="slot-title">Parallel sessions · Data & BI</div>
+              <div class="slot-meta">Oral presentations and discussions with authors</div>
+            </div>
+          </div>
+
+          <div class="schedule-line">
+            <div class="time">17:30</div>
+            <div>
+              <div class="slot-title">Poster session & industry demos</div>
+              <div class="slot-meta">Prototypes, analytics platforms, educational tools</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-row">
+        <span>
+          © 2025 AcademicConf · Organized by the Faculty of Computer Science, Central University.
+        </span>
+        <div class="footer-links">
+          <a href="#about">Practical information</a>
+          <a href="#tracks">Author guidelines</a>
+          <a href="#program">Full program</a>
+          <a href="mailto:contact@academicconf.org">contact@academicconf.org</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
