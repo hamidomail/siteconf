@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Academic Conference 2025 - AIIA Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --accent: #38bdf8;
+      --accent-purple: #a855f7;
+      --accent-soft: rgba(56,189,248,0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card-bg: rgba(15, 23, 42, 0.6);
+      --border: rgba(148, 163, 184, 0.15);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.4);
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      /* Background Image with Dark Overlay mimicking Site B's depth */
+      background: 
+        linear-gradient(to bottom, rgba(2,6,23,0.85), rgba(2,6,23,0.95)),
+        url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; transition: var(--transition); }
+    
+    /* ANIMATIONS (Inspired by Site B's wow.js) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+    .shell { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 20px 40px; }
+
+    /* TOP BAR GRADIENT */
+    .top-bar {
+      position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899, #f97316);
+      z-index: 100;
+    }
+
+    /* NAVIGATION (Modified for Site B Effect) */
+    .nav-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 50;
+      padding: 20px 0;
+      transition: var(--transition);
+    }
+    
+    .nav-container.scrolled {
+      padding: 10px 0;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1140px; margin: 0 auto; padding: 0 20px;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    
+    .logo-pill {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 16px;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .nav-title-main { font-weight: 700; font-size: 15px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .nav-title-sub { font-size: 11px; color: var(--muted); }
+
+    .nav-links { display: flex; gap: 24px; font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--accent); transform: translateY(-2px); }
+
+    .btn-primary {
+      border-radius: 999px; border: none; padding: 10px 24px;
+      font-size: 13px; font-weight: 600;
+      background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+      color: #fff; cursor: pointer;
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+      transition: var(--transition);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding-top: 140px; padding-bottom: 60px;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(40px, 5vw, 56px);
+      line-height: 1.1; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    
+    .hero-title .accent {
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text; color: transparent;
+    }
+
+    /* CARD DESIGN (Inspired by Site A structure but Site B visuals) */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+    
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateY(-5px);
+    }
+
+    /* MARQUEE SECTION (Site B Effect) */
+    .marquee-section {
+      background: var(--accent);
+      padding: 15px 0;
+      overflow: hidden;
+      transform: rotate(-2deg) scale(1.05);
+      margin: 60px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border-top: 2px solid white;
+      border-bottom: 2px solid white;
+    }
+    
+    .marquee-content {
+      display: flex;
+      width: 200%;
+      animation: marquee 20s linear infinite;
+    }
+    
+    .marquee-item {
+      font-size: 24px; font-weight: 800; text-transform: uppercase; color: #020617;
+      margin-right: 40px; white-space: nowrap; display: flex; align-items: center; gap: 10px;
+    }
+
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* IMAGE HOVER EFFECTS (Site B Style) */
+    .speaker-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+      margin-top: 30px;
+    }
+
+    .img-hover-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+
+    .img-hover-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    .img-hover-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(2,6,23,0.95), transparent 60%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px;
+      opacity: 0.9;
+      transition: var(--transition);
+    }
+    
+    /* Radial Overlay Effect from Site B */
+    .img-hover-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at center, rgba(56,189,248,0.3), transparent 70%);
+      opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+    }
+    .img-hover-card:hover::after { opacity: 1; }
+
+    .speaker-name { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .speaker-role { font-size: 13px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* INFO GRID & TRACKS */
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    
+    .info-card {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: var(--transition);
+    }
+    .info-card:hover {
+      background: rgba(15, 23, 42, 0.8);
+      border-color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .info-title { color: var(--text); font-weight: 600; margin-bottom: 8px; font-size: 16px; }
+    .info-text { font-size: 13px; color: var(--muted); }
+    .info-label { color: var(--accent); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+
+    /* SUBMISSION SECTION */
+    .submission-area {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;
+    }
+    
+    .feature-list { list-style: none; margin: 20px 0; }
+    .feature-list li {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+      font-size: 14px; color: var(--muted);
+    }
+    .feature-list i { color: #22c55e; }
+
+    /* MODAL */
+    .modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+      z-index: 200; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .modal.active { display: flex; opacity: 1; }
+    .modal-content {
+      width: 100%; max-width: 900px; height: 80vh;
+      background: var(--bg); border-radius: var(--radius-lg);
+      border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column;
+      transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .modal.active .modal-content { transform: scale(1); }
+    .modal-header {
+      padding: 15px 20px; background: rgba(2,6,23,0.9);
+      display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border);
+    }
+    .modal-close { background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 40px 0; margin-top: 60px; font-size: 13px; color: var(--muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .info-grid, .submission-area { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"></div>
+
+  <!-- NAV (Modified to be sticky and glassy like Site B) -->
+  <header class="nav-container" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="logo-pill">AC</div>
+        <div class="nav-title">
+          <div class="nav-title-main">AcademicConf 2025</div>
+          <div class="nav-title-sub">Data & AI Summit</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#tracks">Tracks</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#submit">Submission</a>
+      </nav>
+      <button class="btn-primary" onclick="openRegistrationModal()">
+        Register Now <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="page">
+    <main class="shell">
+      
+      <!-- HERO -->
+      <section class="hero reveal" id="about">
+        <div class="hero-left">
+          <div style="margin-bottom: 20px;">
+            <span style="background: rgba(56,189,248,0.1); border: 1px solid var(--accent); color: var(--accent); padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
+              <span style="display:inline-block; width:6px; height:6px; background:var(--accent); border-radius:50%; margin-right:6px;"></span>
+              Hybrid Edition
+            </span>
+          </div>
+          <h1 class="hero-title">
+            Exploring the future of <br>
+            <span class="accent">Data & Artificial Intelligence</span>.
+          </h1>
+          <p style="font-size: 18px; color: var(--muted); margin-bottom: 30px; max-width: 500px; margin-inline: auto;">
+            Join world-class researchers and industry leaders in Algiers for 3 days of innovation, peer-reviewed papers, and networking.
+          </p>
+          <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <button class="btn-primary" onclick="openSubmissionModal()">
+              <i class="fas fa-file-upload"></i> Submit Paper
+            </button>
+            <button class="btn-primary" style="background: transparent; border: 1px solid var(--muted); box-shadow: none;" onclick="document.getElementById('program').scrollIntoView({behavior:'smooth'})">
+              View Program
+            </button>
+          </div>
+        </div>
+
+        <!-- HERO CARD (Glassy look) -->
+        <div class="glass-card hero-right">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <span style="font-size:12px; color:var(--accent); font-weight:700;">NOV 12-14, 2025</span>
+            <div style="display:flex; gap:5px;">
+              <span style="width:10px; height:10px; background:#ef4444; border-radius:50%;"></span>
+              <span style="width:10px; height:10px; background:#eab308; border-radius:50%;"></span>
+              <span style="width:10px; height:10px; background:#22c55e; border-radius:50%;"></span>
+            </div>
+          </div>
+          <h3 style="font-size:24px; margin-bottom:10px;">Call for Papers</h3>
+          <p style="font-size:14px; color:var(--muted); margin-bottom:20px;">
+            Topics include Generative AI, MLOps, Data Engineering, and Ethical AI. Selected papers will be indexed in IEEE Xplore.
+          </p>
+          <div style="padding:15px; background:rgba(0,0,0,0.3); border-radius:12px; display:flex; gap:15px; align-items:center;">
+             <div style="background:var(--accent); width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#000; font-weight:bold;">15</div>
+             <div>
+               <div style="font-size:12px; color:var(--muted);">Submission Deadline</div>
+               <div style="font-weight:700;">July 15, 2025</div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- MARQUEE SECTION (From Site B) -->
+    <div class="marquee-section">
+      <div class="marquee-content">
+        <div class="marquee-item"><i class="fas fa-star"></i> Artificial Intelligence</div>
+        <div class="marquee-item"><i class="fas fa-circle"></i> Machine Learning</div>
+        <div class="marquee-item"><i class="fas fa-star"></i> Big Data</div>
+        <div class="marquee-item"><i class="fas fa-circle"></i> Neural Networks</div>
+        <div class="marquee-item"><i class="fas fa-star"></i> Computer Vision</div>
+        <div class="marquee-item"><i class="fas fa-circle"></i> NLP</div>
+        <div class="marquee-item"><i class="fas fa-star"></i> Robotics</div>
+        <!-- Duplicate for loop -->
+        <div class="marquee-item"><i class="fas fa-star"></i> Artificial Intelligence</div>
+        <div class="marquee-item"><i class="fas fa-circle"></i> Machine Learning</div>
+        <div class="marquee-item"><i class="fas fa-star"></i> Big Data</div>
+        <div class="marquee-item"><i class="fas fa-circle"></i> Neural Networks</div>
+        <div class="marquee-item"><i class="fas fa-star"></i> Computer Vision</div>
+        <div class="marquee-item"><i class="fas fa-circle"></i> NLP</div>
+        <div class="marquee-item"><i class="fas fa-star"></i> Robotics</div>
+      </div>
+    </div>
+
+    <main class="shell">
+      
+      <!-- TRACKS -->
+      <section class="section reveal" id="tracks">
+        <div style="text-align:center; margin-bottom:40px;">
+          <h2 style="font-size:32px; margin-bottom:10px;">Conference Tracks</h2>
+          <p style="color:var(--muted);">Explore the core themes of the 2025 edition.</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-label">Track 01</div>
+            <div class="info-title"><i class="fas fa-database" style="color:var(--accent); margin-right:8px;"></i> Data Engineering</div>
+            <p class="info-text">Warehousing, ETL pipelines, Data Quality, Cloud Architectures and Big Data optimization.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-label">Track 02</div>
+            <div class="info-title"><i class="fas fa-brain" style="color:var(--accent-purple); margin-right:8px;"></i> AI & ML</div>
+            <p class="info-text">Deep Learning, LLMs, NLP, Computer Vision and Reinforcement Learning strategies.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-label">Track 03</div>
+            <div class="info-title"><i class="fas fa-chart-line" style="color:#ec4899; margin-right:8px;"></i> Decision Systems</div>
+            <p class="info-text">Business Intelligence, Visualization, Predictive Analytics and Decision Support Systems.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPEAKERS (Visual Upgrade with Site B Effects) -->
+      <section class="section reveal" id="speakers" style="margin-top:80px;">
+        <div style="text-align:center; margin-bottom:40px;">
+          <h2 style="font-size:32px; margin-bottom:10px;">Keynote Speakers</h2>
+          <p style="color:var(--muted);">Visionaries from academia and industry.</p>
+        </div>
+
+        <div class="speaker-grid">
+          <!-- Speaker 1 -->
+          <div class="img-hover-card">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" alt="Speaker">
+            <div class="img-overlay">
+              <div class="speaker-name">Dr. Sarah Connor</div>
+              <div class="speaker-role">AI Ethics Lead, Cyberdyne</div>
+            </div>
+          </div>
+          
+          <!-- Speaker 2 -->
+          <div class="img-hover-card">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop" alt="Speaker">
+            <div class="img-overlay">
+              <div class="speaker-name">Prof. Alan Turing II</div>
+              <div class="speaker-role">CompSci Dept, Cambridge</div>
+            </div>
+          </div>
+
+          <!-- Speaker 3 -->
+          <div class="img-hover-card">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1000&auto=format&fit=crop" alt="Speaker">
+            <div class="img-overlay">
+              <div class="speaker-name">Maya K. Lee</div>
+              <div class="speaker-role">CTO, DataFlow Inc.</div>
+            </div>
+          </div>
+           <!-- Speaker 4 -->
+           <div class="img-hover-card">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop" alt="Speaker">
+            <div class="img-overlay">
+              <div class="speaker-name">James Chen</div>
+              <div class="speaker-role">Founder, NeuralNet</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUBMISSION -->
+      <section class="section reveal" id="submit" style="margin-top:80px;">
+        <div class="glass-card submission-area">
+          <div>
+            <h2 style="font-size:28px; margin-bottom:15px;">Submit your research</h2>
+            <p style="color:var(--muted); margin-bottom:20px;">
+              We use Microsoft CMT for the review process. All papers undergo a double-blind peer review.
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i> Indexed Proceedings (IEEE/Springer)</li>
+              <li><i class="fas fa-check"></i> Constructive feedback from reviewers</li>
+              <li><i class="fas fa-check"></i> Best Paper Awards</li>
+            </ul>
+            <button class="btn-primary" onclick="openSubmissionModal()">
+              Go to CMT Submission <i class="fas fa-external-link-alt" style="margin-left:5px;"></i>
+            </button>
+          </div>
+          <div style="background: rgba(0,0,0,0.2); border-radius:16px; padding:20px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+            <i class="fas fa-ticket-alt" style="font-size:48px; color:var(--accent-purple); margin-bottom:15px;"></i>
+            <h3 style="font-size:20px; color:#fff;">Registration</h3>
+            <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">Early bird tickets available until Sept 1st.</p>
+            <button class="btn-primary" style="background:transparent; border:1px solid var(--border);" onclick="openRegistrationModal()">
+              Register via Google Forms
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+          <div>
+            <div style="font-weight:700; color:#fff; font-size:16px; margin-bottom:5px;">AcademicConf 2025</div>
+            <div>Central University, Algiers</div>
+          </div>
+          <div style="display:flex; gap:20px;">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:30px; opacity:0.5;">
+          © 2025 Academic Conference. Designed with inspiration from AIIA'25.
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- MODALS (Kept functional from Site A) -->
+  <div id="submissionModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 style="font-size:18px;">Submit via CMT</h2>
+        <button class="modal-close" onclick="closeSubmissionModal()">×</button>
+      </div>
+      <iframe src="https://cmt3.research.microsoft.com/" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+  </div>
+
+  <div id="registrationModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 style="font-size:18px;">Register</h2>
+        <button class="modal-close" onclick="closeRegistrationModal()">×</button>
+      </div>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScd6clCqVUyb5eQJRQIhX3CvqbIK26d_gcXNpBK6S7AoIKStQ/viewform?embedded=true" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // 1. Sticky Nav Effect (Site B style)
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // 2. Scroll Animation (Reveal on Scroll - Wow.js alternative)
+    const observerOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 3. Modal Logic
+    function openSubmissionModal() {
+      document.getElementById('submissionModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSubmissionModal() {
+      document.getElementById('submissionModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function openRegistrationModal() {
+      document.getElementById('registrationModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeRegistrationModal() {
+      document.getElementById('registrationModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close on click outside
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+  </script>
+</body>
+</html>
