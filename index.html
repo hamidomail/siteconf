@@ -2,747 +2,1135 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <style>body { transition: opacity ease-in 0.2s; } body[unresolved] { opacity: 0; display: block; overflow: hidden; position: relative; }</style>
-        <title>AM21 INNOVATION WEEK </title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <style>:root { --bg: #0f172a; --bg-alt: #020617; --accent: #38bdf8; --accent-soft: rgba(56,189,248,0.12); --text: #e5e7eb; --muted: #9ca3af; --card: #020617; --border: #1f2937; --radius-lg: 18px; --radius-md: 12px; } * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;  /* Image + dégradé pour un rendu pro */ background: radial-gradient(circle at top, rgba(31,41,55,0.85) 0%, rgba(2,6,23,0.9) 45%, rgba(0,0,0,0.95) 100%),
-    url("images/1.jpeg") no-repeat center; background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; } a { color: inherit; text-decoration: none; } /* ANIMATIONS */@keyframes fadeInUp { from {  opacity: 0;  transform: translateY(30px); }  to {  opacity: 1;  transform: translateY(0); } } @keyframes scaleIn { from {  opacity: 0;  transform: scale(0.9); }  to {  opacity: 1;  transform: scale(1); } } @keyframes float { 0%, 100% {  transform: translateY(0); }  50% {  transform: translateY(-10px); } } @keyframes pulse { 0%, 100% {  opacity: 1; }  50% {  opacity: 0.5; } } @keyframes marquee { 0% {  transform: translateX(0); }  100% {  transform: translateX(-50%); } } .animate-on-scroll { opacity: 0; transition: all 0.6s ease; } .animate-on-scroll.visible { opacity: 1; animation: fadeInUp 0.8s ease forwards; } .scale-on-scroll { opacity: 0; transition: all 0.6s ease; } .scale-on-scroll.visible { opacity: 1; animation: scaleIn 0.8s ease forwards; } /* SCROLL TO TOP */.scroll-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg, #38bdf8, #a855f7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0b1120; font-size: 24px; cursor: pointer; z-index: 100; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 10px 28px rgba(37,99,235,0.8); } .scroll-to-top.visible { opacity: 1; visibility: visible; } .scroll-to-top:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(37,99,235,0.9); } /* TOP BAR */.top-bar { position: fixed; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899, #f97316); opacity: 0.9; z-index: 40; } /* HEADER */.nav { position: sticky; top: 4px; z-index: 30; margin-bottom: 26px; transition: all 0.3s ease; padding: 0 20px; } .nav.scrolled .nav-inner { background: rgba(15,23,42,0.95); backdrop-filter: blur(20px); box-shadow: 0 10px 40px rgba(0,0,0,0.3); } .nav-inner { background: rgba(15,23,42,0.82); border-radius: 999px; border: 1px solid rgba(148,163,184,0.15); box-shadow: 0 12px 30px rgba(15,23,42,0.85); backdrop-filter: blur(18px); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 1120px; margin: 0 auto; transition: all 0.3s ease; } .nav-left { display: flex; align-items: center; gap: 10px; } .logo-pill { width: 30px; height: 30px; border-radius: 14px; background: radial-gradient(circle at 30% 0, #38bdf8, #a855f7 40%, #020617 100%); box-shadow: 0 0 0 1px rgba(15,23,42,0.8), 0 10px 25px rgba(8,47,73,0.95); display: flex; align-items: center; justify-content: center; color: #e5e7eb; font-size: 14px; font-weight: 700; } .nav-title-main { font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: #e5e7eb; } .nav-title-sub { font-size: 11px; color: var(--muted); } .nav-links { display: flex; align-items: center; gap: 18px; font-size: 13px; color: #9ca3af; } .nav-links a { padding: 6px 10px; border-radius: 999px; transition: all 0.3s ease; position: relative; } .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: var(--accent); transition: all 0.3s ease; transform: translateX(-50%); } .nav-links a:hover { background: rgba(148,163,184,0.12); color: #e5e7eb; transform: translateY(-2px); } .nav-links a:hover::after { width: 80%; } .btn-outline { border-radius: 999px; border: 1px solid rgba(148,163,184,0.5); padding: 7px 14px; font-size: 12px; color: var(--muted); background: radial-gradient(circle at top, rgba(148,163,184,0.15), rgba(15,23,42,0.85)); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.3s ease; } .btn-outline:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(8,47,73,0.9); } .btn-primary { border-radius: 999px; border: none; padding: 9px 18px; font-size: 13px; font-weight: 600; background: linear-gradient(135deg, #38bdf8, #a855f7); color: #0b1120; cursor: pointer; box-shadow: 0 10px 28px rgba(37,99,235,0.8); display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; } .btn-primary:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 18px 40px rgba(15,23,42,0.95); filter: saturate(1.2); } .shell { width: 100%; max-width: 1120px; margin: 0 auto; padding: 22px 20px 40px; } /* HERO SECTION */.hero { padding: 60px 0; display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr); gap: 32px; align-items: center; margin-bottom: 38px; } .hero-badge { display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; padding: 6px 9px 6px 6px; background: radial-gradient(circle at top left, rgba(56,189,248,0.2), rgba(15,23,42,0.9)); border: 1px solid rgba(148,163,184,0.35); width: fit-content; backdrop-filter: blur(14px); box-shadow: 0 14px 30px rgba(15,23,42,0.95); } .hero-badge-dot { width: 6px; height: 6px; border-radius: 999px; background: #22c55e; box-shadow: 0 0 0 5px rgba(34,197,94,0.25); animation: pulse 2s infinite; } .hero-title { font-size: clamp(30px, 3.1vw, 34px); line-height: 1.25; letter-spacing: -0.03em; margin: 20px 0; } .hero-title .accent { background: linear-gradient(135deg, #38bdf8, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; } .conference-card { position: relative; border-radius: 24px; padding: 16px; background: radial-gradient(circle at top left, rgba(56,189,248,0.32), rgba(15,23,42,0.98) 52%, #020617 100%); border: 1px solid rgba(148,163,184,0.4); box-shadow: 0 20px 50px rgba(15,23,42,0.9); overflow: hidden; transition: all 0.4s ease; } .conference-card:hover { transform: translateY(-10px); box-shadow: 0 30px 70px rgba(15,23,42,0.95); border-color: rgba(56,189,248,0.6); } .card-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; align-items: center; } .hero-stat-card { padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(148,163,184,0.28); background: radial-gradient(circle at top, rgba(15,23,42,0.98), rgba(15,23,42,0.9)); box-shadow: 0 10px 22px rgba(15,23,42,0.85); transition: all 0.3s ease; } .hero-stat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(15,23,42,0.95); } /* SECTIONS */section { padding: 60px 0; } .section-header { text-align: center; margin-bottom: 40px; } .section-title { font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase; color: #9ca3af; margin-bottom: 10px; } h2 { font-size: clamp(24px, 4vw, 32px); margin-bottom: 20px; } /* INFO CARDS */.info-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } .info-card { border-radius: var(--radius-md); padding: 20px; background: rgba(15,23,42,0.9); border: 1px solid rgba(31,41,55,1); box-shadow: 0 18px 36px rgba(15,23,42,0.85); transition: all 0.4s ease; position: relative; overflow: hidden; } .info-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top left, rgba(56,189,248,0.1), transparent 70%); opacity: 0; transition: opacity 0.4s ease; } .info-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 25px 50px rgba(15,23,42,0.95); border-color: rgba(56,189,248,0.5); } .info-card:hover::before { opacity: 1; } /* SUBMISSION CARDS */.submission-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } .submission-card { border-radius: var(--radius-lg); padding: 18px; background: radial-gradient(circle at top left, rgba(56,189,248,0.18), rgba(15,23,42,0.95)); border: 1px solid rgba(148,163,184,0.4); box-shadow: 0 20px 40px rgba(15,23,42,0.9); display: flex; flex-direction: column; gap: 12px; transition: all 0.4s ease; } .submission-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(15,23,42,0.95); border-color: rgba(56,189,248,0.6); } .submission-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(168,85,247,0.25)); border: 1px solid rgba(148,163,184,0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; transition: all 0.3s ease; } .submission-card:hover .submission-icon { transform: rotate(360deg) scale(1.1); } .btn-large { width: 100%; padding: 12px 20px; border-radius: 12px; border: none; font-size: 14px; font-weight: 600; background: linear-gradient(135deg, #38bdf8, #a855f7); color: #0b1120; cursor: pointer; box-shadow: 0 10px 28px rgba(37,99,235,0.8); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease; } .btn-large:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(15,23,42,0.95); filter: saturate(1.12); } /* MARQUEE */.marquee-section { padding: 30px 0; overflow: hidden; position: relative; } .marquee-row { display: flex; padding: 20px 0; background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(168,85,247,0.1)); transform: rotate(-2deg); margin: 20px -50px; } .marquee-content { display: flex; animation: marquee 30s linear infinite; white-space: nowrap; } .marquee-item { font-size: clamp(30px, 5vw, 60px); margin: 0 30px; font-weight: 700; } /* SPEAKERS */.speakers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; } .speaker-card { position: relative; border-radius: 16px; overflow: hidden; transition: all 0.4s ease; cursor: pointer; } .speaker-card:hover { transform: translateY(-10px); } .speaker-card img { width: 100%; height: 400px; object-fit: cover; transition: all 0.4s ease; } .speaker-card:hover img { transform: scale(1.1); } .speaker-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 30px 20px 20px; text-align: center; } .speaker-name { font-size: 20px; font-weight: 600; margin-bottom: 5px; } .speaker-title { font-size: 13px; color: #9ca3af; } /* SPONSORS */.sponsors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; align-items: center; text-align: center; } .sponsor-logo { padding: 20px; border-radius: 12px; background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.2); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; min-height: 120px; } .sponsor-logo:hover { transform: translateY(-5px); background: rgba(15,23,42,0.8); border-color: rgba(56,189,248,0.5); } .sponsor-logo img { max-width: 100%; max-height: 80px; object-fit: contain; filter: brightness(0.8); transition: all 0.3s ease; } .sponsor-logo:hover img { filter: brightness(1); } /* VENUE */.venue-carousel { position: relative; overflow: hidden; border-radius: 20px; margin: 40px 0; } .carousel-track { display: flex; transition: transform 0.5s ease; } .carousel-slide { min-width: 100%; position: relative; } .carousel-slide img { width: 100%; height: 500px; object-fit: cover; } .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 40px; color: white; } .carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); border: none; color: white; font-size: 30px; padding: 15px 20px; cursor: pointer; border-radius: 50%; backdrop-filter: blur(10px); transition: all 0.3s ease; z-index: 10; } .carousel-nav:hover { background: rgba(255,255,255,0.3); transform: translateY(-50%) scale(1.1); } .carousel-nav.prev { left: 20px; } .carousel-nav.next { right: 20px; } .carousel-indicators { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; } .indicator { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s ease; } .indicator.active { background: white; width: 30px; border-radius: 6px; } /* MODAL */.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 50; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.3s ease; } @keyframes fadeIn { from {  opacity: 0; }  to {  opacity: 1; } } .modal.active { display: flex; } .modal-content { width: 100%; max-width: 900px; max-height: 90vh; background: var(--bg); border-radius: var(--radius-lg); border: 1px solid rgba(148,163,184,0.3); box-shadow: 0 24px 60px rgba(0,0,0,0.9); overflow: hidden; display: flex; flex-direction: column; animation: scaleIn 0.3s ease; } .modal-header { padding: 20px 24px; border-bottom: 1px solid rgba(31,41,55,1); display: flex; justify-content: space-between; align-items: center; } .modal-close { width: 32px; height: 32px; border-radius: 8px; border: none; background: rgba(148,163,184,0.1); color: #9ca3af; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.2s ease; } .modal-close:hover { background: rgba(148,163,184,0.2); color: #e5e7eb; } .modal-body { flex: 1; overflow: auto; } .modal-body iframe { width: 100%; height: 100%; min-height: 600px; border: none; } .footer { margin-top: 40px; padding: 30px 0; font-size: 11px; color: #6b7280; border-top: 1px solid rgba(31,41,55,1); text-align: center; } /* RESPONSIVE */@media (max-width: 880px) { .hero {  grid-template-columns: minmax(0, 1fr); }  .card-grid {  grid-template-columns: 1fr; }  .info-grid {  grid-template-columns: repeat(2, minmax(0, 1fr)); }  .submission-grid {  grid-template-columns: minmax(0, 1fr); }  .speakers-grid {  grid-template-columns: repeat(2, 1fr); } } @media (max-width: 640px) { .nav-links {  display: none; }  .info-grid {  grid-template-columns: minmax(0, 1fr); }  .speakers-grid {  grid-template-columns: 1fr; }  .marquee-item {  font-size: 30px; } }</style>
-        <link type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
-        <link type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
-        <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
-        <style lang="en" type="text/css" id="dark-mode-native-style"></style>
-        <style lang="en" type="text/css" id="dark-mode-native-sheet"></style>
+        <title>AM2I INNOVATION WEEK 2026 | Advanced Materials, Manufacturing, AI & Industrial Innovation</title>
+        <meta name="description" content="International conference on AI, Materials Science, and Industrial Innovation. November 12–14, 2025, Sidi Bel Abbès, Algeria"/>
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:title" content="AM2I INNOVATION WEEK 2026"/>
+        <meta property="og:description" content="Join the premier conference on Advanced Materials, Manufacturing, AI & Industrial Innovation"/>
+        <meta property="og:image" content="images/og-image.jpg"/>
+        <meta property="og:url" content="https://am2i-conference.org"/>
+        <meta property="og:type" content="website"/>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
+        <style>/* CSS Variables for Theme Management */:root { --bg: #0f172a; --bg-alt: #020617; --accent: #38bdf8; --accent-soft: rgba(56,189,248,0.12); --text: #e5e7eb; --muted: #9ca3af; --card: #020617; --border: #1f2937; --radius-lg: 18px; --radius-md: 12px; --radius-sm: 8px; --shadow: 0 20px 50px rgba(15,23,42,0.9); --shadow-hover: 0 30px 70px rgba(15,23,42,0.95); --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); } /* Reset and Base Styles */* { box-sizing: border-box; margin: 0; padding: 0; } html { scroll-behavior: smooth; scroll-padding-top: 100px; } body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: radial-gradient(circle at top, rgba(31,41,55,0.85) 0%, rgba(2,6,23,0.9) 45%, rgba(0,0,0,0.95) 100%),
+                    url("images/1.jpeg") no-repeat center; background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; min-height: 100vh; } body.unresolved { opacity: 0; overflow: hidden; } body.menu-open { overflow: hidden; } /* Typography */h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; } p { margin-bottom: 1rem; } a { color: inherit; text-decoration: none; transition: var(--transition); } /* Animations */@keyframes fadeInUp { from {  opacity: 0;  transform: translateY(30px); }  to {  opacity: 1;  transform: translateY(0); } } @keyframes scaleIn { from {  opacity: 0;  transform: scale(0.9); }  to {  opacity: 1;  transform: scale(1); } } @keyframes float { 0%, 100% {  transform: translateY(0); }  50% {  transform: translateY(-10px); } } @keyframes pulse { 0%, 100% {  opacity: 1; }  50% {  opacity: 0.5; } } @keyframes marquee { 0% {  transform: translateX(0); }  100% {  transform: translateX(-50%); } } @keyframes shimmer { 0% {  background-position: -1000px 0; }  100% {  background-position: 1000px 0; } } @keyframes gradient { 0% {  background-position: 0% 50%; }  50% {  background-position: 100% 50%; }  100% {  background-position: 0% 50%; } } /* Utility Classes */.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; } .text-gradient { background: linear-gradient(135deg, #38bdf8, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; } .animate-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; } .animate-on-scroll.visible { opacity: 1; transform: translateY(0); } .scale-on-scroll { opacity: 0; transform: scale(0.95); transition: opacity 0.6s ease, transform 0.6s ease; } .scale-on-scroll.visible { opacity: 1; transform: scale(1); } /* Top Progress Bar */.top-bar { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899, #f97316); z-index: 1000; transform-origin: left; transform: scaleX(0); transition: transform 0.3s ease; } /* Scroll to Top Button */.scroll-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg, #38bdf8, #a855f7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0b1120; font-size: 20px; cursor: pointer; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; box-shadow: 0 10px 28px rgba(37,99,235,0.8); border: none; outline: none; } .scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); } .scroll-to-top:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(37,99,235,0.9); } /* Navigation */.nav { position: sticky; top: 0; z-index: 100; padding: 0 20px; transition: all 0.3s ease; background: rgba(15,23,42,0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); } .nav.scrolled { background: rgba(15,23,42,0.95); box-shadow: 0 10px 40px rgba(0,0,0,0.3); } .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 15px 0; gap: 20px; } .nav-left { display: flex; align-items: center; gap: 12px; } .nav-logo { display: flex; align-items: center; gap: 10px; } .logo-img { height: 42px; width: auto; filter: drop-shadow(0 4px 12px rgba(56,189,248,0.3)); } .nav-title { font-size: 16px; font-weight: 700; letter-spacing: 0.5px; color: var(--text); background: linear-gradient(135deg, #38bdf8, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; } .nav-right { display: flex; align-items: center; gap: 20px; } .nav-links { display: flex; gap: 24px; align-items: center; } .nav-link { font-size: 14px; font-weight: 500; color: var(--muted); padding: 8px 12px; border-radius: var(--radius-sm); transition: var(--transition); position: relative; } .nav-link:hover { color: var(--text); background: rgba(56,189,248,0.1); } .nav-link.active { color: var(--accent); background: rgba(56,189,248,0.15); } /* Buttons */.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; font-size: 14px; font-weight: 600; border-radius: 999px; cursor: pointer; transition: var(--transition); border: none; outline: none; position: relative; overflow: hidden; } .btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; } .btn:hover::before { left: 100%; } .btn-primary { background: linear-gradient(135deg, #38bdf8, #a855f7); color: #0b1120; box-shadow: 0 10px 28px rgba(37,99,235,0.8); } .btn-primary:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 18px 40px rgba(15,23,42,0.95); filter: saturate(1.2); } .btn-outline { background: transparent; color: var(--muted); border: 1px solid rgba(148,163,184,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); } .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(8,47,73,0.9); } .btn-large { width: 100%; padding: 14px 24px; font-size: 15px; border-radius: var(--radius-md); } /* Main Content */.shell { width: 100%; max-width: 1280px; margin: 0 auto; padding: 40px 20px; } /* Hero Section */.hero { padding: 100px 0 60px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 60px; margin-bottom: 80px; } @media (min-width: 1024px) { .hero {  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); } } .hero-badge { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px; background: rgba(15,23,42,0.8); border: 1px solid rgba(56,189,248,0.3); border-radius: 999px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); margin-bottom: 24px; } .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; position: relative; } .hero-badge-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; border-radius: 50%; background: rgba(34,197,94,0.3); animation: pulse 2s infinite 0.5s; } .hero-title { font-size: clamp(36px, 5vw, 56px); line-height: 1.1; margin-bottom: 24px; } .hero-subtitle { font-size: 18px; color: var(--muted); margin-bottom: 32px; max-width: 600px; } .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 40px; } .hero-stat { padding: 20px; background: rgba(15,23,42,0.7); border: 1px solid rgba(148,163,184,0.2); border-radius: var(--radius-md); transition: var(--transition); } .hero-stat:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 15px 30px rgba(15,23,42,0.95); } .conference-card { background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(2,6,23,0.95)); border: 1px solid rgba(56,189,248,0.3); border-radius: var(--radius-lg); padding: 32px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: var(--shadow); transition: var(--transition); position: relative; overflow: hidden; } .conference-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); } .conference-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: rgba(56,189,248,0.6); } /* Sections */section { padding: 80px 0; position: relative; } .section-header { text-align: center; margin-bottom: 60px; } .section-title { font-size: 14px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; } .section-subtitle { font-size: clamp(28px, 4vw, 42px); margin-bottom: 20px; } /* Cards Grid */.grid { display: grid; gap: 24px; } .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } .grid-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); } .card { background: rgba(15,23,42,0.8); border: 1px solid rgba(31,41,55,1); border-radius: var(--radius-md); padding: 24px; transition: var(--transition); position: relative; overflow: hidden; } .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at top left, rgba(56,189,248,0.1), transparent 70%); opacity: 0; transition: opacity 0.4s ease; } .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: var(--shadow); } .card:hover::before { opacity: 1; } /* Tracks */.track-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(168,85,247,0.2)); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 24px; } /* Marquee */.marquee-section { padding: 60px 0; overflow: hidden; position: relative; } .marquee-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); } .marquee-section::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); } .marquee-container { padding: 40px 0; transform: rotate(-1deg); background: linear-gradient(135deg, rgba(56,189,248,0.05), rgba(168,85,247,0.05)); margin: 0 -50px; } .marquee-content { display: flex; animation: marquee 40s linear infinite; white-space: nowrap; } .marquee-item { font-size: clamp(40px, 6vw, 72px); font-weight: 800; margin: 0 40px; opacity: 0.8; background: linear-gradient(135deg, #38bdf8, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 200%; animation: gradient 3s ease infinite; } /* Speakers */.speakers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; } .speaker-card { position: relative; border-radius: var(--radius-md); overflow: hidden; transition: var(--transition); } .speaker-image { width: 100%; height: 300px; object-fit: cover; transition: transform 0.6s ease; } .speaker-card:hover .speaker-image { transform: scale(1.1); } .speaker-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); transform: translateY(100%); transition: transform 0.4s ease; } .speaker-card:hover .speaker-info { transform: translateY(0); } .speaker-name { font-size: 20px; font-weight: 600; margin-bottom: 4px; } .speaker-title { font-size: 14px; color: var(--muted); margin-bottom: 12px; } .speaker-bio { font-size: 13px; color: var(--text); opacity: 0; transition: opacity 0.3s ease; max-height: 0; overflow: hidden; } .speaker-card:hover .speaker-bio { opacity: 1; max-height: 100px; } /* Committee */.committee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; } /* Sponsors */.sponsors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; align-items: center; justify-items: center; } .sponsor-logo { width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.2); border-radius: var(--radius-md); transition: var(--transition); } .sponsor-logo:hover { transform: translateY(-5px); border-color: var(--accent); background: rgba(15,23,42,0.8); } /* Venue Carousel */.venue-carousel { position: relative; border-radius: var(--radius-lg); overflow: hidden; margin: 40px 0; box-shadow: var(--shadow); } .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .carousel-slide { min-width: 100%; position: relative; } .carousel-slide img { width: 100%; height: 500px; object-fit: cover; } .carousel-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: white; } .carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: white; font-size: 20px; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: var(--transition); display: flex; align-items: center; justify-content: center; z-index: 10; } .carousel-nav:hover { background: rgba(255,255,255,0.2); transform: translateY(-50%) scale(1.1); } .carousel-nav.prev { left: 20px; } .carousel-nav.next { right: 20px; } .carousel-indicators { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; } .indicator { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: var(--transition); } .indicator.active { background: white; transform: scale(1.2); } /* Modal */.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 2000; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.3s ease; } @keyframes fadeIn { from {  opacity: 0; }  to {  opacity: 1; } } .modal.active { display: flex; } .modal-content { width: 100%; max-width: 1000px; max-height: 90vh; background: var(--bg); border-radius: var(--radius-lg); border: 1px solid rgba(56,189,248,0.3); box-shadow: 0 32px 64px rgba(0,0,0,0.5); overflow: hidden; animation: scaleIn 0.3s ease; } .modal-header { padding: 24px; border-bottom: 1px solid rgba(31,41,55,1); display: flex; justify-content: space-between; align-items: center; } .modal-title { font-size: 20px; font-weight: 600; color: var(--text); } .modal-close { width: 36px; height: 36px; border-radius: var(--radius-sm); border: 1px solid rgba(148,163,184,0.2); background: rgba(148,163,184,0.1); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: var(--transition); } .modal-close:hover { background: rgba(148,163,184,0.2); color: var(--text); border-color: var(--accent); } .modal-body { padding: 24px; } /* Footer */.footer { margin-top: 80px; padding: 60px 0 40px; border-top: 1px solid rgba(31,41,55,1); } .footer-content { max-width: 1280px; margin: 0 auto; padding: 0 20px; } .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; } .footer-logo { font-size: 20px; font-weight: 700; margin-bottom: 16px; display: inline-block; } .footer-links { display: flex; flex-direction: column; gap: 12px; } .footer-link { color: var(--muted); font-size: 14px; transition: var(--transition); } .footer-link:hover { color: var(--accent); padding-left: 8px; } .footer-bottom { padding-top: 40px; border-top: 1px solid rgba(31,41,55,1); text-align: center; color: var(--muted); font-size: 14px; } /* Mobile Menu */.mobile-menu-btn { display: none; width: 32px; height: 32px; flex-direction: column; justify-content: space-between; background: none; border: none; cursor: pointer; padding: 0; z-index: 100; } .mobile-menu-btn span { width: 100%; height: 3px; background: var(--text); border-radius: 2px; transition: var(--transition); } .mobile-menu-btn.active span:nth-child(1) { transform: translateY(11px) rotate(45deg); } .mobile-menu-btn.active span:nth-child(2) { opacity: 0; transform: translateX(-20px); } .mobile-menu-btn.active span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); } .mobile-menu { position: fixed; top: 0; right: 0; width: 320px; height: 100vh; background: rgba(2,6,23,0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-left: 1px solid rgba(56,189,248,0.2); transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 90; padding: 100px 30px 40px; display: flex; flex-direction: column; } .mobile-menu.active { transform: translateX(0); } .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; visibility: hidden; transition: opacity 0.4s ease; z-index: 80; } .mobile-menu-overlay.active { opacity: 1; visibility: visible; } .mobile-menu-links { display: flex; flex-direction: column; gap: 16px; } .mobile-menu-link { font-size: 18px; font-weight: 500; color: var(--text); padding: 12px 20px; border-radius: var(--radius-sm); transition: var(--transition); } .mobile-menu-link:hover, .mobile-menu-link.active { background: rgba(56,189,248,0.15); color: var(--accent); padding-left: 28px; } /* Responsive Design */@media (max-width: 1024px) { .hero {  grid-template-columns: 1fr;  text-align: center; }  .hero-stats {  grid-template-columns: repeat(2, 1fr); } } @media (max-width: 768px) { .shell {  padding: 20px; }  section {  padding: 60px 0; }  .hero {  padding: 80px 0 40px; }  .hero-title {  font-size: clamp(28px, 8vw, 42px); }  .nav-links {  display: none; }  .mobile-menu-btn {  display: flex; }  .nav-right {  gap: 12px; }  .btn {  padding: 8px 16px;  font-size: 13px; }  .grid-3, .grid-2 {  grid-template-columns: 1fr; }  .carousel-caption {  padding: 20px; }  .carousel-nav {  width: 40px;  height: 40px;  font-size: 16px; }  .modal-content {  margin: 0;  border-radius: 0; } } @media (max-width: 480px) { .hero-stats {  grid-template-columns: 1fr; }  .marquee-item {  font-size: 28px; }  .btn-large {  padding: 12px 20px;  font-size: 14px; }  .footer-grid {  grid-template-columns: 1fr;  text-align: center; } } /* Dark mode overrides */@media (prefers-color-scheme: dark) { :root {  --bg: #0a0a0a;  --bg-alt: #111111;  --text: #f5f5f5;  --muted: #a0a0a0; } }</style>
     </head>
-    <body>
-        <div class="top-bar"></div>
-        <div class="scroll-to-top" id="scrollTop">↑</div>
-        <header class="nav" id="navbar">
+    <body class="unresolved">
+        <!-- Top Progress Bar -->
+        <div class="top-bar" id="progressBar"></div>
+        <!-- Scroll to Top -->
+        <button class="scroll-to-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+        <!-- Navigation -->
+        <nav class="nav" id="navbar">
             <div class="nav-inner">
-                <div class="nav-left">
-                    <div style="height: 60px; display: flex; align-items: center;">
-                        <img src="images/logoconf_2.png" alt="AM2I Logo" style="height: 100%; width: auto; object-fit: contain;">
-                    </div>
-                    <div class="nav-title">
-                        <span class="nav-title-main">AM2I Week-2026</span><span class="nav-title-sub"></span>
-                    </div>
+                <div class="nav-left"><a href="#" class="nav-logo"> <img src="images/logoconf_2.png" alt="AM2I Conference" class="logo-img"/> <span class="nav-title">AM2I 2026</span> </a>
                 </div>
-                <nav class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#tracks">Tracks</a>
-                    <a href="#speakers">Speakers</a>
-                    <a href="#organizing-committee">Organizing Committee</a>
-                    <a href="#scientific-committee">Scientific Committee</a>
-                    <a href="#sponsors">Sponsors</a>
-                    <a href="#venue">Venue</a>
-                    <a href="#submit">Submit</a>
-                </nav>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <button class="btn-outline" onclick="openSubmissionModal()">
-                        <span>📄</span>
-                        Submit Paper
-                    </button>
-                    <button class="btn-primary" onclick="openRegistrationModal()">
-                        Register<span>→</span>
+                <div class="nav-links"><a href="#about" class="nav-link">About</a><a href="#tracks" class="nav-link">Tracks</a><a href="#speakers" class="nav-link">Speakers</a><a href="#committee" class="nav-link">Committee</a><a href="#sponsors" class="nav-link">Sponsors</a><a href="#venue" class="nav-link">Venue</a>
+                </div>
+                <div class="nav-right">
+                    <button class="btn btn-outline" onclick="openSubmissionModal()">Submit Paper</button>
+                    <button class="btn btn-primary" onclick="openRegistrationModal()">Register Now</button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu"><span></span>
                     </button>
                 </div>
             </div>
-        </header>
+        </nav>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-links"><a href="#about" class="mobile-menu-link">About Conference</a><a href="#tracks" class="mobile-menu-link">Tracks & Scope</a><a href="#speakers" class="mobile-menu-link">Keynote Speakers</a><a href="#committee" class="mobile-menu-link">Committee</a><a href="#sponsors" class="mobile-menu-link">Sponsors</a><a href="#venue" class="mobile-menu-link">Venue</a><a href="#submit" class="mobile-menu-link">Submit Paper</a><a href="#register" class="mobile-menu-link">Register</a>
+            </div>
+        </div>
         <main class="shell">
-            <!-- HERO -->
-            <section class="hero animate-on-scroll visible" id="about">
-                <div>
-                    <div class="hero-badge"><span style="background: linear-gradient(135deg, rgba(56,189,248,0.13), rgba(129,140,248,0.16)); border: 1px solid rgba(148,163,184,0.45); border-radius: 999px; padding: 4px 9px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">Edition 2026</span>
-                        <div style="font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px;"><span class="hero-badge-dot"></span>
-                            Hybrid conference · On-site &amp; online
-                        </div>
+            <!-- Hero Section -->
+            <section class="hero" id="about">
+                <div class="animate-on-scroll">
+                    <div class="hero-badge"><span>Edition 2026</span>
+                        <div class="hero-badge-dot"></div><span>Hybrid Conference · On-site & Online</span>
                     </div>
                     <h1 class="hero-title">
-          Advanced Materials, Manufacturing, AI <span class="accent"> and Industrial Innovation</span> </h1>
-                    <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); margin: 20px 0;">
-                        <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(15,23,42,0.85); border: 1px solid rgba(148,163,184,0.3);"><strong style="color: #e5e7eb; font-weight: 500;">November 12–14, 2025</strong> · Sidi Bel Abbès, Algeria
+                        Advanced Materials, Manufacturing, AI <span class="text-gradient">& Industrial Innovation</span> </h1>
+                    <p class="hero-subtitle">
+                        Join the premier international conference bringing together researchers, 
+                        practitioners, and industry leaders to explore the future of intelligent 
+                        systems and industrial innovation. </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 32px 0;">
+                        <div style="padding: 12px 20px; background: rgba(15,23,42,0.8); border: 1px solid rgba(56,189,248,0.3); border-radius: var(--radius-md);">
+                            <div style="font-size: 16px; font-weight: 600; color: var(--accent);">Nov 12-14, 2025</div>
+                            <div style="font-size: 14px; color: var(--muted);">Sidi Bel Abbès, Algeria</div>
                         </div>
-                        <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(15,23,42,0.85); border: 1px solid rgba(148,163,184,0.3);"><strong style="color: #e5e7eb; font-weight: 500;">Submission</strong> · before July 15, 2025
+                        <div style="padding: 12px 20px; background: rgba(15,23,42,0.8); border: 1px solid rgba(56,189,248,0.3); border-radius: var(--radius-md);">
+                            <div style="font-size: 16px; font-weight: 600; color: var(--accent);">Submission Deadline</div>
+                            <div style="font-size: 14px; color: var(--muted);">July 15, 2025</div>
                         </div>
                     </div>
-                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 6px;">
-                        <button class="btn-primary" onclick="openSubmissionModal()">
-                            Submit a paper<span>↗</span>
-                        </button>
-                        <span style="font-size: 12px; color: var(--muted);"> <strong style="color: #e5e7eb; font-weight: 500;">Peer‑reviewed</strong> papers, published in indexed proceedings. </span>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-bottom: 40px;">
+                        <button class="btn btn-primary btn-large" onclick="openSubmissionModal()">
+                            Submit Your Paper ↗
+</button>
+                        <button class="btn btn-outline" onclick="openRegistrationModal()">
+                            Early Bird Registration
+</button>
                     </div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px;">
-                        <div class="hero-stat-card">
-                            <div style="text-transform: uppercase; letter-spacing: 0.14em; font-size: 10px; color: #6b7280; margin-bottom: 4px;">Audience</div>
-                            <div style="font-size: 13px; color: #e5e7eb;">Researchers, PhD students, practitioners</div>
-                            <div style="font-size: 11px; color: #9ca3af;">Data, AI, decision support systems</div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px;">Audience</div>
+                            <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">Researchers & Practitioners</div>
+                            <div style="font-size: 14px; color: var(--muted);">Academic & industry professionals</div>
                         </div>
-                        <div class="hero-stat-card">
-                            <div style="text-transform: uppercase; letter-spacing: 0.14em; font-size: 10px; color: #6b7280; margin-bottom: 4px;">Format</div>
-                            <div style="font-size: 13px; color: #e5e7eb;">Keynotes, sessions &amp; workshops</div>
-                            <div style="font-size: 11px; color: #9ca3af;">Panels, posters, industry demos</div>
+                        <div class="hero-stat">
+                            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px;">Format</div>
+                            <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">Hybrid Sessions</div>
+                            <div style="font-size: 14px; color: var(--muted);">Keynotes, workshops & panels</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px;">Publication</div>
+                            <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">Indexed Proceedings</div>
+                            <div style="font-size: 14px; color: var(--muted);">Peer-reviewed papers</div>
                         </div>
                     </div>
                 </div>
-                <div class="scale-on-scroll visible">
-                    <div class="conference-card">
-                        <div class="card-grid">
-                            <div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px;">
-                                    <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; border-radius: 999px; padding: 4px 8px; background: rgba(15,23,42,0.8); border: 1px solid rgba(148,163,184,0.6); color: #e5e7eb; display: inline-flex; align-items: center; gap: 6px;"> <span style="width: 6px; height: 6px; border-radius: 999px; background: #38bdf8; animation: pulse 2s infinite;"></span>
-                  In‑person &amp; online </span>
-                                </div>
-                                <div style="font-size: 11px; color: #cbd5f5; text-transform: uppercase; letter-spacing: 0.19em; margin-bottom: 4px;">International conference</div>
-                                <div style="font-size: 14px; letter-spacing: -0.02em; margin-bottom: 4px;">IA &amp; Industrial Innovation 2026</div>
-                                <div style="font-size: 12px; color: #cbd5f5; margin-bottom: 10px;">
-                                    Towards responsible and explainable intelligent systems.
+                <div class="conference-card scale-on-scroll">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 24px;">
+                        <div>
+                            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px;">International Conference</div>
+                            <h2 style="font-size: 24px; margin-bottom: 12px;">AI & Industrial Innovation 2026</h2>
+                            <p style="font-size: 14px; color: var(--muted); margin-bottom: 20px;">
+                                Towards responsible and explainable intelligent systems for industrial transformation. </p>
+                        </div>
+                        <div style="padding: 8px 16px; background: rgba(22,163,74,0.2); border: 1px solid rgba(22,163,74,0.5); border-radius: 999px; font-size: 12px; color: #bbf7d0;">
+                            Open for Submissions
 </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; font-size: 11px;"><span style="border-radius: 999px; padding: 4px 8px; background: rgba(15,23,42,0.84); border: 1px solid rgba(148,163,184,0.5);">Double‑blind review</span><span style="border-radius: 999px; padding: 4px 8px; background: rgba(15,23,42,0.84); border: 1px solid rgba(148,163,184,0.5);">Indexed proceedings</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+                        <div>
+                            <h3 style="font-size: 14px; color: var(--accent); margin-bottom: 16px;">Important Dates 2025</h3>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 600; color: var(--text);">July 15</div>
+                                    <div style="font-size: 13px; color: var(--muted);">Paper Submission Deadline</div>
                                 </div>
-                                <div style="font-size: 11px; color: #e5e7eb; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><span style="border-radius: 999px; padding: 3px 7px; font-size: 10px; background: rgba(22,163,74,0.2); border: 1px solid rgba(22,163,74,0.7); color: #bbf7d0; text-transform: uppercase; letter-spacing: 0.16em;">Open call</span>
-                                    Submit before <strong>July 15, 2025</strong>
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 600; color: var(--text);">Sep 15</div>
+                                    <div style="font-size: 13px; color: var(--muted);">Notification to Authors</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 600; color: var(--text);">Oct 5</div>
+                                    <div style="font-size: 13px; color: var(--muted);">Camera-Ready Deadline</div>
                                 </div>
                             </div>
-                            <aside style="position: relative; border-radius: 18px; padding: 11px; background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(15,23,42,0.96)); border: 1px solid rgba(148,163,184,0.4); box-shadow: 0 16px 30px rgba(15,23,42,0.65);">
-                                <div style="font-size: 11px; color: #9ca3af; margin-bottom: 8px;">Important dates · 2025</div>
-                                <div style="font-size: 11px; color: #cbd5f5; margin-bottom: 10px; line-height: 1.8;"><strong style="color: #e5e7eb;">July 15</strong> · Paper submission<br/><strong style="color: #e5e7eb;">Sep 15</strong> · Notification<br/><strong style="color: #e5e7eb;">Oct 5</strong> · Camera‑ready
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;"><span style="font-size: 10px; padding: 4px 8px; border-radius: 999px; background: rgba(56,189,248,0.15); color: #bae6fd; border: 1px solid rgba(56,189,248,0.6);">Data Engineering</span><span style="font-size: 10px; padding: 4px 8px; border-radius: 999px; background: rgba(56,189,248,0.15); color: #bae6fd; border: 1px solid rgba(56,189,248,0.6);">AI &amp; ML</span>
-                                </div>
-                                <div style="font-size: 10px; color: #9ca3af;"><strong style="color: #e5e7eb;">Indexing</strong> · Major series
-                                </div>
-                            </aside>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 14px; color: var(--accent); margin-bottom: 16px;">Conference Tracks</h3>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <div style="padding: 6px 12px; background: rgba(56,189,248,0.1); border-radius: 6px; font-size: 12px; color: #bae6fd;">
+                                    Data Engineering & Warehousing
+</div>
+                                <div style="padding: 6px 12px; background: rgba(56,189,248,0.1); border-radius: 6px; font-size: 12px; color: #bae6fd;">
+                                    AI, Machine Learning & NLP
+</div>
+                                <div style="padding: 6px 12px; background: rgba(56,189,248,0.1); border-radius: 6px; font-size: 12px; color: #bae6fd;">
+                                    Decision Support & Applications
+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-top: 20px; border-top: 1px solid rgba(148,163,184,0.2);">
+                        <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">Review Process</div>
+                        <div style="display: flex; gap: 12px;">
+                            <div style="padding: 6px 12px; background: rgba(15,23,42,0.8); border: 1px solid rgba(148,163,184,0.4); border-radius: 6px; font-size: 11px;">
+                                Double-blind Review
+</div>
+                            <div style="padding: 6px 12px; background: rgba(15,23,42,0.8); border: 1px solid rgba(148,163,184,0.4); border-radius: 6px; font-size: 11px;">
+                                Indexed Proceedings
+</div>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- TRACKS -->
+            <!-- Tracks Section -->
             <section id="tracks">
-                <div class="section-header animate-on-scroll visible">
-                    <h2 class="section-title">Tracks &amp; Scope</h2>
-                    <p style="color: #6b7280; font-size: 13px;">Clear topics to simplify paper submission</p>
+                <div class="section-header animate-on-scroll">
+                    <div class="section-title">Conference Tracks</div>
+                    <h2 class="section-subtitle">Scope & Research Areas</h2>
+                    <p style="color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto;">
+                        Submit your research to one of our focused tracks for targeted review and discussion </p>
                 </div>
-                <div class="info-grid">
-                    <article class="info-card scale-on-scroll visible">
-                        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #6b7280; margin-bottom: 6px;">Track 1</div>
-                        <div style="font-size: 14px; color: #e5e7eb; margin-bottom: 8px; font-weight: 500;">Data Engineering &amp; Warehousing</div>
-                        <p style="font-size: 12px; color: #9ca3af; line-height: 1.6;">
-            Modeling, ETL/ELT, data quality, OLAP optimization, cloud and hybrid architectures. </p>
+                <div class="grid grid-3">
+                    <article class="card scale-on-scroll">
+                        <div class="track-icon">📊</div>
+                        <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px;">Track 1</div>
+                        <h3 style="font-size: 20px; margin-bottom: 12px;">Data Engineering & Warehousing</h3>
+                        <p style="color: var(--muted); font-size: 14px;">
+                            Modeling, ETL/ELT processes, data quality assurance, OLAP optimization, 
+                            cloud and hybrid architectures, data lakes, and modern data platform design. </p>
                     </article>
-                    <article class="info-card scale-on-scroll visible">
-                        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #6b7280; margin-bottom: 6px;">Track 2</div>
-                        <div style="font-size: 14px; color: #e5e7eb; margin-bottom: 8px; font-weight: 500;">AI, Machine Learning &amp; NLP</div>
-                        <p style="font-size: 12px; color: #9ca3af; line-height: 1.6;">
-            Supervised and unsupervised learning, deep learning, language models, trustworthy and responsible AI. </p>
+                    <article class="card scale-on-scroll">
+                        <div class="track-icon">🤖</div>
+                        <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px;">Track 2</div>
+                        <h3 style="font-size: 20px; margin-bottom: 12px;">AI, Machine Learning & NLP</h3>
+                        <p style="color: var(--muted); font-size: 14px;">
+                            Supervised and unsupervised learning, deep learning architectures, 
+                            language models, trustworthy AI, responsible AI systems, and 
+                            ethical considerations in machine learning. </p>
                     </article>
-                    <article class="info-card scale-on-scroll visible">
-                        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #6b7280; margin-bottom: 6px;">Track 3</div>
-                        <div style="font-size: 14px; color: #e5e7eb; margin-bottom: 8px; font-weight: 500;">Decision Support &amp; Applications</div>
-                        <p style="font-size: 12px; color: #9ca3af; line-height: 1.6;">
-            Dashboards, decision support systems, AI for industry, health, energy and smart cities. </p>
+                    <article class="card scale-on-scroll">
+                        <div class="track-icon">💡</div>
+                        <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px;">Track 3</div>
+                        <h3 style="font-size: 20px; margin-bottom: 12px;">Decision Support & Applications</h3>
+                        <p style="color: var(--muted); font-size: 14px;">
+                            Interactive dashboards, decision support systems, AI applications 
+                            in industry, healthcare, energy management, smart cities, and 
+                            sustainable development solutions. </p>
                     </article>
                 </div>
             </section>
-            <!-- MARQUEE SECTION -->
+            <!-- Marquee Section -->
             <div class="marquee-section">
-                <div class="marquee-row" style="background: linear-gradient(90deg, rgba(56,189,248,0.1), rgba(168,85,247,0.1));">
-                    <div class="marquee-content"><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item" style="opacity: 0.3;">/</span><span class="marquee-item">Machine Learning</span><span class="marquee-item" style="opacity: 0.3;">/</span><span class="marquee-item">Data Science</span><span class="marquee-item" style="opacity: 0.3;">/</span><span class="marquee-item">Innovation</span><span class="marquee-item" style="opacity: 0.3;">/</span><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item" style="opacity: 0.3;">/</span><span class="marquee-item">Machine Learning</span><span class="marquee-item" style="opacity: 0.3;">/</span><span class="marquee-item">Data Science</span><span class="marquee-item" style="opacity: 0.3;">/</span><span class="marquee-item">Innovation</span>
+                <div class="marquee-container">
+                    <div class="marquee-content"><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Machine Learning</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Data Science</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Industrial Innovation</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Advanced Materials</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Smart Manufacturing</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Machine Learning</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Data Science</span><span class="marquee-item" style="opacity: 0.5;">/</span><span class="marquee-item">Industrial Innovation</span>
                     </div>
                 </div>
             </div>
-            <!-- SUBMISSION SECTION -->
+            <!-- Submission Section -->
             <section id="submit">
-                <div class="section-header animate-on-scroll visible">
-                    <h2 class="section-title">Submit &amp; Register</h2>
-                    <p style="color: #6b7280; font-size: 13px;">Easy online submission and registration process</p>
+                <div class="section-header animate-on-scroll">
+                    <div class="section-title">Paper Submission</div>
+                    <h2 class="section-subtitle">Submit Your Research</h2>
+                    <p style="color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto;">
+                        Easy online submission and registration process for authors and participants </p>
                 </div>
-                <div class="submission-grid">
-                    <div class="submission-card scale-on-scroll visible">
-                        <div class="submission-icon">📝</div>
-                        <h3 style="font-size: 18px; letter-spacing: -0.02em; color: #e5e7eb;">Submit Your Paper via CMT</h3>
-                        <p style="font-size: 13px; color: #9ca3af; line-height: 1.6; flex: 1;">
-            Use Microsoft CMT (Conference Management Toolkit) to submit your research papers. 
-            Our peer-review process ensures high-quality publications. </p>
-                        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #cbd5f5; margin: 8px 0;">
-                            <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #22c55e; font-weight: bold;">✓</span>
-                                Double-blind peer review
+                <div class="grid grid-2">
+                    <div class="card scale-on-scroll">
+                        <div style="width: 60px; height: 60px; border-radius: 16px; background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(168,85,247,0.2)); display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px;">
+                            📝
+</div>
+                        <h3 style="font-size: 24px; margin-bottom: 16px;">Submit via CMT</h3>
+                        <p style="color: var(--muted); font-size: 15px; margin-bottom: 24px;">
+                            Use Microsoft CMT (Conference Management Toolkit) to submit your research papers. 
+                            Our rigorous peer-review process ensures high-quality publications in indexed proceedings. </p>
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(22,163,74,0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 12px;">
+                                    ✓
+</div><span style="font-size: 14px;">Double-blind peer review process</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #22c55e; font-weight: bold;">✓</span>
-                                Track your submission status
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(22,163,74,0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 12px;">
+                                    ✓
+</div><span style="font-size: 14px;">Real-time submission status tracking</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #22c55e; font-weight: bold;">✓</span>
-                                LaTeX &amp; Word templates available
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(22,163,74,0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 12px;">
+                                    ✓
+</div><span style="font-size: 14px;">LaTeX & Word templates available</span>
                             </div>
                         </div>
-                        <button class="btn-large" onclick="openSubmissionModal()"><span>📄</span>
-                            Submit Paper on CMT<span>↗</span>
-                        </button>
+                        <button class="btn btn-primary btn-large" onclick="openSubmissionModal()">
+                            Submit Paper on CMT ↗
+</button>
                     </div>
-                    <div class="submission-card scale-on-scroll visible">
-                        <div class="submission-icon">🎫</div>
-                        <h3 style="font-size: 18px; letter-spacing: -0.02em; color: #e5e7eb;">Register via Google Forms</h3>
-                        <p style="font-size: 13px; color: #9ca3af; line-height: 1.6; flex: 1;">
-            Complete your conference registration using our simple Google Form. 
-            Available for both in-person and online attendance. </p>
-                        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #cbd5f5; margin: 8px 0;">
-                            <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #22c55e; font-weight: bold;">✓</span>
-                                Hybrid attendance options
+                    <div class="card scale-on-scroll">
+                        <div style="width: 60px; height: 60px; border-radius: 16px; background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(168,85,247,0.2)); display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px;">
+                            🎫
+</div>
+                        <h3 style="font-size: 24px; margin-bottom: 16px;">Register Online</h3>
+                        <p style="color: var(--muted); font-size: 15px; margin-bottom: 24px;">
+                            Complete your conference registration using our simple online form. 
+                            Available for both in-person and virtual attendance with flexible payment options. </p>
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(22,163,74,0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 12px;">
+                                    ✓
+</div><span style="font-size: 14px;">Hybrid attendance options</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #22c55e; font-weight: bold;">✓</span>
-                                Early bird discounts available
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(22,163,74,0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 12px;">
+                                    ✓
+</div><span style="font-size: 14px;">Early bird discounts available</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #22c55e; font-weight: bold;">✓</span>
-                                Instant confirmation email
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(22,163,74,0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 12px;">
+                                    ✓
+</div><span style="font-size: 14px;">Instant confirmation email</span>
                             </div>
                         </div>
-                        <button class="btn-large" onclick="openRegistrationModal()"><span>✓</span>
-                            Register Now<span>→</span>
-                        </button>
-                        <p style="font-size: 11px; color: #6b7280; margin-top: 8px; text-align: center;">
-            Early bird until September 1, 2025 </p>
+                        <button class="btn btn-primary btn-large" onclick="openRegistrationModal()">
+                            Register Now →
+</button>
+                        <p style="color: var(--muted); font-size: 13px; text-align: center; margin-top: 20px;">
+                            Early bird registration until September 1, 2025 </p>
                     </div>
                 </div>
             </section>
-            <!-- SPEAKERS -->
+            <!-- Speakers Section -->
             <section id="speakers">
-                <div class="section-header animate-on-scroll visible">
-                    <h2 class="section-title">Keynote Speakers</h2>
-                    <p style="color: #6b7280; font-size: 13px;">Meet the visionaries leading the AI revolution</p>
+                <div class="section-header animate-on-scroll">
+                    <div class="section-title">Featured Speakers</div>
+                    <h2 class="section-subtitle">Keynote Speakers</h2>
+                    <p style="color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto;">
+                        Meet the visionaries and thought leaders shaping the future of AI and industrial innovation </p>
                 </div>
                 <div class="speakers-grid">
-                    <div class="speaker-card scale-on-scroll visible">
-                        <img src="./Academic Conference 2025_files/photo-1507003211169-0a1dd7228f2d" alt="Speaker 1"/>
-                        <div class="speaker-overlay">
+                    <div class="speaker-card scale-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. John Anderson" class="speaker-image"/>
+                        <div class="speaker-info">
                             <div class="speaker-name">Dr. John Anderson</div>
                             <div class="speaker-title">AI Research Lead, Tech Institute</div>
+                            <div class="speaker-bio">
+                                Leading researcher in explainable AI and industrial applications of machine learning.
+</div>
                         </div>
                     </div>
-                    <div class="speaker-card scale-on-scroll visible">
-                        <img src="./Academic Conference 2025_files/photo-1573496359142-b8d87734a5a2" alt="Speaker 2"/>
-                        <div class="speaker-overlay">
+                    <div class="speaker-card scale-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Prof. Sarah Chen" class="speaker-image"/>
+                        <div class="speaker-info">
                             <div class="speaker-name">Prof. Sarah Chen</div>
                             <div class="speaker-title">Machine Learning Expert, University</div>
+                            <div class="speaker-bio">
+                                Pioneer in deep learning architectures and their applications in manufacturing.
+</div>
                         </div>
                     </div>
-                    <div class="speaker-card scale-on-scroll visible">
-                        <img src="./Academic Conference 2025_files/photo-1519345182560-3f2917c472ef" alt="Speaker 3"/>
-                        <div class="speaker-overlay">
+                    <div class="speaker-card scale-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. Michael Roberts" class="speaker-image"/>
+                        <div class="speaker-info">
                             <div class="speaker-name">Dr. Michael Roberts</div>
                             <div class="speaker-title">Data Science Director, Enterprise</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- ===== ORGANIZING COMMITTEE ===== -->
-            <section id="organizing-committee">
-                <div class="section-header animate-on-scroll">
-                    <h2 class="section-title">Organizing Committee</h2>
-                    <p style="color:#9ca3af;font-size:13px">
-      Conference coordination and local organization </p>
-                </div>
-                <!-- PRESIDENT -->
-                <div class="info-grid" style="grid-template-columns:1fr;max-width:600px;margin:0 auto 30px;">
-                    <article class="info-card scale-on-scroll">
-                        <div style="font-size:15px;color:#e5e7eb;font-weight:600;">
-                            Prof. Tounsi Abdelouahed
+                            <div class="speaker-bio">
+                                Expert in implementing data-driven decision systems in industrial settings.
 </div>
-                        <p style="font-size:12px;color:#9ca3af;">
-        President of the Organizing Committee<br/>
-        Djillali Liabès University, Sidi Bel Abbès, Algeria </p>
-                    </article>
-                </div>
-                <!-- MEMBERS -->
-                <div class="info-grid">
-                    <article class="info-card scale-on-scroll">
-                        <strong>BENDINE Kouider</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>GHERMAOUI Ilias Mohamed Amine</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>Ezzine Mohammed Chams Eddine</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>KANDOUCI Chahinaz</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>BOUSAHLA Abdelmoumen Anis</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>BELIFA Hichem</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>BOURADA Fouad</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>LIAMANI Samira</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>AIT SIDHOUM Imen</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>TEBBOUNE Wafaa</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>TOUNSI Abdeldjabar</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>ADDOU Yahia Farouk</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>TEGRARA Hassiba Samira</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>KACHA Arslane Hatem</strong>
-                        <p style="font-size:12px;color:#9ca3af;">
-        Djillali Liabès University, Algeria </p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>CHERIEF Mohamed Nadhir Djamel Eddine</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>CHERFI Mohammed</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>BEZZERROUKI Mhadjia</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>FEKIRINI Hamida</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>BOUCHLAGHEM Mohamed</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>Dr. Zouaoui Satla</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>Dr. Abdelaziz Boukhoulda</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>Dr. Khobzaoui Abdelkader</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                    <article class="info-card scale-on-scroll">
-                        <strong>Dr. Benhammouda Mohammed</strong>
-                        <p style="font-size:12px;color:#9ca3af;">Djillali Liabès University, Algeria</p>
-                    </article>
-                </div>
-            </section>
-            <section id="scientific-committee">
-                <div class="section-header">
-                    <h2 class="section-title">Scientific Committee</h2>
-                    <p style="color:#9ca3af;font-size:13px">
-      International scientific committee members </p>
-                </div>
-                <div class="info-grid">
-                    <div class="info-card"><strong>Pr. TOUNSI ABDELOUAHED</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Dr. Salim Belouettar</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Dr. BENDINE Kouider</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>GHERMAOUI Ilias Mohamed Amine</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BACHIR BOUIDJRA BELABBES</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BOUSAHLA ABDELMOUMEN ANIS</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BOURADA MOHAMED</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BENYOUCEF SAMIR</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. SAHLI ABDERAHMANE</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BOUTABOUT BENALI</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Dr. Smahat Amine</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Dr. Zouaoui Satla</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. M'HAMDIA RACHID</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Dr. Abdelaziz Boukhoulda</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BOUKHOULDA FAROUK BENALLEL</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. SAIDI HAYAT</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BELLIFA HICHEM</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. AIT KACI DJAFFAR</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. MEFTAH SID AHMED</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BELHOUARI MOHAMED</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. FEKKIH Sidi Mohammed</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Dr. BOUKHOULDA Azize</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. ELADJRAMI Mohammed</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. FAHSI BOUAZZA</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. HEIRECHE HOUARI</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BENZAIR ABDENOUR</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Dr. MEDJDOUB Sidi Mohammed</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. OUINAS Djamel</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. MOKHTARI Mohamed</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. SERIER ZOUAOUI</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BESSAIM AICHA</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. ATTIA AMINA</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. AMARA KHALED</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BELABED ZAKARIA</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. HOUARI Mohammed Sid Ahmed</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. YOUZERA HADJ</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. SADOUN MOHAMED</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. HASSAINE DAOUADJI TAHAR</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. BELALIA Sid Ahmed</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. KACI ABDELHAKIM</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
-                    </div>
-                    <div class="info-card"><strong>Pr. YEGHNEM REDHA</strong>
-                        <p style="font-size:12px;color:#9ca3af">University / Research Center</p>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!-- SPONSORS -->
-            <section id="sponsors" style="background: rgba(15,23,42,0.5); padding: 80px 20px; margin: 60px -20px; border-radius: 20px;">
-                <div class="section-header animate-on-scroll visible">
-                    <h2 class="section-title">Our Sponsors</h2>
-                    <p style="color: #6b7280; font-size: 13px;">Supporting innovation and research excellence</p>
+            <!-- Committee Section -->
+            <section id="committee">
+                <div class="section-header animate-on-scroll">
+                    <div class="section-title">Conference Committee</div>
+                    <h2 style="font-size: 20px; color: var(--text); margin-bottom: 24px; text-align: center;">Organizing &amp; Scientific Committees</h2>
                 </div>
-                <div class="sponsors-grid">
-                    <div class="sponsor-logo scale-on-scroll visible">
-                        <div style="font-size: 24px; font-weight: bold; color: #38bdf8;">TECH CORP</div>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="margin-bottom: 40px;">
+                        <h3 style="font-size: 20px; color: var(--text); margin-bottom: 24px; text-align: center;">Organizing Committee</h3>
+                        <div class="committee-grid">
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Prof. Tounsi Abdelouahed</div>
+                                <div style="font-size: 14px; color: var(--muted);">President</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Djillali Liabès University, Sidi Bel Abbès, Algeria</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">BENDINE Kouider</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">GHERMAOUI Ilias Mohamed Amine</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Ezzine Mohammed Chams Eddine</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">KANDOUCI Chahinaz</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">BOUSAHLA Abdelmoumen Anis</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">BELIFA Hichem</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">BOURADA Fouad</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">LIAMANI Samira</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">AIT SIDHOUM Imen</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">TEBBOUNE Wafaa</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">TOUNSI Abdeldjabar</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">ADDOU Yahia Farouk</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">TEGRARA Hassiba Samira</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">KACHA Arslane Hatem</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">CHERIEF Mohamed Nadhir Djamel Eddine</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">CHERFI Mohammed</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">BEZZERROUKI Mhadjia</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">FEKIRINI Hamida</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">BOUCHLAGHEM Mohamed</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Zouaoui Satla</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Abdelaziz Boukhoulda</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Khobzaoui Abdelkader</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                            <div class="card">
+                                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. BENHAMMOUDA MOHAMMED</div>
+                                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="sponsor-logo scale-on-scroll visible">
-                        <div style="font-size: 24px; font-weight: bold; color: #a855f7;">AI LABS</div>
-                    </div>
-                    <div class="sponsor-logo scale-on-scroll visible">
-                        <div style="font-size: 24px; font-weight: bold; color: #ec4899;">DATA SOLUTIONS</div>
-                    </div>
-                    <div class="sponsor-logo scale-on-scroll visible">
-                        <div style="font-size: 24px; font-weight: bold; color: #f97316;">INNOVATION HUB</div>
-                    </div>
-                    <div class="sponsor-logo scale-on-scroll visible">
-                        <div style="font-size: 24px; font-weight: bold; color: #22c55e;">RESEARCH INST</div>
-                    </div>
-                    <div class="sponsor-logo scale-on-scroll visible">
-                        <div style="font-size: 24px; font-weight: bold; color: #06b6d4;">CLOUD TECH</div>
-                    </div>
-                </div>
+                </div>                           
+              <div style="max-width: 800px; margin: 0 auto;">
+    <div style="margin-bottom: 40px;">
+        <h3 style="font-size: 20px; color: var(--text); margin-bottom: 24px; text-align: center;">Scientific Committee</h3>
+        <div class="committee-grid">
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Prof. Tounsi Abdelouahed</div>
+                <div style="font-size: 14px; color: var(--muted);">President</div>
+                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Djillali Liabès University, Sidi Bel Abbès, Algeria</p>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Salim Belouettar</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. BENDINE Kouider</div>
+                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Organizing Committee Member</p>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">GHERMAOUI Ilias Mohamed Amine</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BACHIR BOUIDJRA BELABBES</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BOUSAHLA ABDELMOUMEN ANIS</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BOURADA MOHAMED</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BENYOUCEF SAMIR</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. SAHLI ABDERAHMANE</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BOUTABOUT BENALI</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Smahat Amine</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Zouaoui Satla</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. M'HAMDIA RACHID</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Abdelaziz Boukhoulda</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BOUKHOULDA FAROUK BENALLEL</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. SAIDI HAYAT</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BELLIFA HICHEM</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. AIT KACI DJAFFAR</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. MEFTAH SID AHMED</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BELHOUARI MOHAMED</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. FEKKIH Sidi Mohammed</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. BOUKHOULDA Azize</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. ELADJRAMI Mohammed</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. FAHSI BOUAZZA</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. HEIRECHE HOUARI</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BENZAIR ABDENOUR</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. MEDJDOUB Sidi Mohammed</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. OUINAS Djamel</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. MOKHTARI Mohamed</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. SERIER ZOUAOUI</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BESSAIM AICHA</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. ATTIA AMINA</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. AMARA KHALED</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BELABED ZAKARIA</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. HOUARI Mohammed Sid Ahmed</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. YOUZERA HADJ</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. SADOUN MOHAMED</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. HASSAINE DAOUADJI TAHAR</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Moulgaada abdelmadjid</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. ZIDOUR MOHAMED</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. MOHAMED AIT AMAR MEZIANE</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. CHIKH ABDELBAKI</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. DRAICHE KADA</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. BENGHERBIA Billel</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. HASSEN AIT ATMANE</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">BENIA Hadj Mohamed (directeur de recherche)</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BOUHADRA ABDELHAKIM</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Heng Hu</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Erasmo Carrera</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Nicholas Fantuzzi</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Yacine Rezgui</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Heinz Adolf Preisig</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Olivier Polit</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Professor Hakim Naceur</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Natalia Konchakova</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. El Mostafa Daya</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Guilherme Ferreira Gomes</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Michael Krommer</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Ahmed Makradi</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Christos E. Athanasiou</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Nouari, Mohamed</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Ahmed El Refai</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Gerhard A. Holzapfel</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Alper POLAT</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Gilles Lubineau</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Ahmed Wagih Abdel Hady</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. mbuehler@mit.edu</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Badis Haddag</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Christian Mittelstedt</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. Francesco Tornabene</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Ali Hossain Alewai Daraji</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Henri Perrin</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. David Ruch</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Djamila Aouada</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Dr. Anna Boczkowska</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Bernhard Pichler</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. BELALIA Sid Ahmed</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. KACI ABDELHAKIM</div>
+            </div>
+            <div class="card">
+                <div style="font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Pr. YEGHNEM REDHA</div>
+            </div>
+        </div>
+    </div>
+</div>
             </section>
-            <!-- VENUE -->
-            <section id="venue">
-                <div class="section-header animate-on-scroll visible">
-                    <h2 class="section-title">Location &amp; Venue</h2>
-                    <p style="color: #6b7280; font-size: 13px;">Join us at the UDL University campus</p>
-                </div>
-                <div class="venue-carousel scale-on-scroll visible">
-                    <div class="carousel-track" id="carouselTrack" style="transform: translateX(-100%);">
-                        <div class="carousel-slide">
-                            <img src="images/sba_1.jpg" alt="Conference Hall"/>
-                            <div class="slide-overlay">
-                                <div style="font-size: 24px; font-weight: 600; margin-bottom: 10px;">Sidi Bel Abbès</div>
-                                <div style="font-size: 14px; opacity: 0.9;">Discover the charm of the Petit Paris</div>
-                            </div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/sba_2.jpg" alt="Campus"/>
-                            <div class="slide-overlay">
-                                <div style="font-size: 24px; font-weight: 600; margin-bottom: 10px;">Sidi Bel Abbès</div>
-                                <div style="font-size: 14px; opacity: 0.9;">Discover the charm of the Petit Paris</div>
-                            </div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/sba_3.jpg" alt="City"/>
-                            <div class="slide-overlay">
-                                <div style="font-size: 24px; font-weight: 600; margin-bottom: 10px;">Djillali Liabes University</div>
-                                <div style="font-size: 14px; opacity: 0.9;">Main campus and research facilities</div>
-                            </div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/sba_4.jpg" alt="City"/>
-                            <div class="slide-overlay">
-                                <div style="font-size: 24px; font-weight: 600; margin-bottom: 10px;">Main Conference Hall</div>
-                                <div style="font-size: 14px; opacity: 0.9;">State-of-the-art facilities with modern technology</div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-nav prev" onclick="changeSlide(-1)">‹</button>
-                    <button class="carousel-nav next" onclick="changeSlide(1)">›</button>
-                    <div class="carousel-indicators">
-                        <div class="indicator" onclick="goToSlide(0)"></div>
-                        <div class="indicator active" onclick="goToSlide(1)"></div>
-                        <div class="indicator" onclick="goToSlide(2)"></div>
-                        <div class="indicator" onclick="goToSlide(3)"></div>
-                    </div>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px;">
-                    <div class="info-card scale-on-scroll visible">
-                        <div style="font-size: 40px; margin-bottom: 10px;">📍</div>
-                        <div style="font-size: 14px; color: #e5e7eb; margin-bottom: 4px; font-weight: 500;">Address</div>
-                        <p style="font-size: 12px; color: #9ca3af;">Djillali Liabes University<br/>Sidi Bel Abbès, Algeria</p>
-                    </div>
-                    <div class="info-card scale-on-scroll visible">
-                        <div style="font-size: 40px; margin-bottom: 10px;">📞</div>
-                        <div style="font-size: 14px; color: #e5e7eb; margin-bottom: 4px; font-weight: 500;">Contact</div>
-                        <p style="font-size: 12px; color: #9ca3af;">+213 XXX XXX XXX<br/>contact@academicconf.org</p>
-                    </div>
-                    <div class="info-card scale-on-scroll visible">
-                        <div style="font-size: 40px; margin-bottom: 10px;">🏨</div>
-                        <div style="font-size: 14px; color: #e5e7eb; margin-bottom: 4px; font-weight: 500;">Accommodation</div>
-                        <p style="font-size: 12px; color: #9ca3af;">Partner hotels available<br/>Special conference rates</p>
-                    </div>
-                </div>
-                <div class="scale-on-scroll" style="margin-top: 40px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(148,163,184,0.4); box-shadow: 0 20px 40px rgba(15,23,42,0.9);">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52065.33367676767!2d-0.633333!3d35.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7f0026041f7063%3A0x40165e316023300!2sSidi%20Bel%20Abb%C3%A8s!5e0!3m2!1sen!2sdz!4v1700000000000!5m2!1sen!2sdz" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-               </div>
-            </section>
-            <!-- FOOTER -->
-            <footer class="footer">
-                <div style="max-width: 1120px; margin: 0 auto;">
-                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; margin-bottom: 20px;">
-                        <span>
-            © AM2I WEEK-2026 AcademicConf · UDL Sidi Bel Abbes. </span>
-                        <div style="display: flex; flex-wrap: wrap; gap: 15px;"><a href="#about" style="text-decoration: underline; text-decoration-color: rgba(148,163,184,0.6); text-underline-offset: 3px; transition: all 0.3s ease;">About</a><a href="#submit" style="text-decoration: underline; text-decoration-color: rgba(148,163,184,0.6); text-underline-offset: 3px; transition: all 0.3s ease;">Submit</a><a href="#speakers" style="text-decoration: underline; text-decoration-color: rgba(148,163,184,0.6); text-underline-offset: 3px; transition: all 0.3s ease;">Program</a><a href="" style="text-decoration: underline; text-decoration-color: rgba(148,163,184,0.6); text-underline-offset: 3px; transition: all 0.3s ease;">Contact</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+                            <!-- Sponsors Section -->
+                            <section id="sponsors" style="background: rgba(15,23,42,0.5); padding: 80px 0; border-radius: var(--radius-lg);">
+                                <div class="section-header animate-on-scroll">
+                                    <div class="section-title">Partners</div>
+                                    <h2 class="section-subtitle">Our Sponsors</h2>
+                                    <p style="color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto;">
+                        Supporting innovation and research excellence in AI and industrial applications </p>
+                                </div>
+                                <div class="sponsors-grid">
+                                    <div class="sponsor-logo scale-on-scroll">
+                                        <div style="font-size: 24px; font-weight: bold; color: var(--accent);">TECH CORP</div>
+                                    </div>
+                                    <div class="sponsor-logo scale-on-scroll">
+                                        <div style="font-size: 24px; font-weight: bold; color: #a855f7;">AI LABS</div>
+                                    </div>
+                                    <div class="sponsor-logo scale-on-scroll">
+                                        <div style="font-size: 24px; font-weight: bold; color: #ec4899;">DATA SOLUTIONS</div>
+                                    </div>
+                                    <div class="sponsor-logo scale-on-scroll">
+                                        <div style="font-size: 24px; font-weight: bold; color: #f97316;">INNOVATION HUB</div>
+                                    </div>
+                                    <div class="sponsor-logo scale-on-scroll">
+                                        <div style="font-size: 24px; font-weight: bold; color: #22c55e;">RESEARCH INST</div>
+                                    </div>
+                                    <div class="sponsor-logo scale-on-scroll">
+                                        <div style="font-size: 24px; font-weight: bold; color: #06b6d4;">CLOUD TECH</div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Venue Section -->
+                            <section id="venue">
+                                <div class="section-header animate-on-scroll">
+                                    <div class="section-title">Location</div>
+                                    <h2 class="section-subtitle">Conference Venue</h2>
+                                    <p style="color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto;">
+                        Join us at the prestigious Djillali Liabès University campus in Sidi Bel Abbès </p>
+                                </div>
+                                <div class="venue-carousel scale-on-scroll">
+                                    <div class="carousel-track" id="carouselTrack">
+                                        <div class="carousel-slide">
+                                            <img src="images/sba_1.jpg" alt="Conference Hall at Djillali Liabès University"/>
+                                            <div class="carousel-caption">
+                                                <div style="font-size: 28px; font-weight: 600; margin-bottom: 8px;">Sidi Bel Abbès</div>
+                                                <div style="font-size: 16px; opacity: 0.9;">Discover the charm of the "Petit Paris"</div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="images/sba_2.jpg" alt="University Campus"/>
+                                            <div class="carousel-caption">
+                                                <div style="font-size: 28px; font-weight: 600; margin-bottom: 8px;">Sidi Bel Abbès</div>
+                                                <div style="font-size: 16px; opacity: 0.9;">Historic city with modern facilities</div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="images/sba_3.jpg" alt="City View"/>
+                                            <div class="carousel-caption">
+                                                <div style="font-size: 28px; font-weight: 600; margin-bottom: 8px;">Djillali Liabès University</div>
+                                                <div style="font-size: 16px; opacity: 0.9;">Main campus and research facilities</div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="images/sba_4.jpg" alt="Conference Facilities"/>
+                                            <div class="carousel-caption">
+                                                <div style="font-size: 28px; font-weight: 600; margin-bottom: 8px;">Main Conference Hall</div>
+                                                <div style="font-size: 16px; opacity: 0.9;">State-of-the-art facilities with modern technology</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-nav prev" onclick="changeSlide(-1)" aria-label="Previous slide">‹</button>
+                                    <button class="carousel-nav next" onclick="changeSlide(1)" aria-label="Next slide">›</button>
+                                    <div class="carousel-indicators" id="carouselIndicators">
+                                        <!-- Indicators will be generated by JavaScript -->
+                                    </div>
+                                </div>
+                                <div class="grid grid-3" style="margin-top: 40px;">
+                                    <div class="card scale-on-scroll">
+                                        <div style="font-size: 40px; margin-bottom: 16px;">📍</div>
+                                        <h3 style="font-size: 18px; margin-bottom: 12px;">Address</h3>
+                                        <p style="color: var(--muted); font-size: 14px;">
+                            Djillali Liabès University<br/>
+                            Sidi Bel Abbès, Algeria </p>
+                                    </div>
+                                    <div class="card scale-on-scroll">
+                                        <div style="font-size: 40px; margin-bottom: 16px;">📞</div>
+                                        <h3 style="font-size: 18px; margin-bottom: 12px;">Contact</h3>
+                                        <p style="color: var(--muted); font-size: 14px;">
+                            +213 XXX XXX XXX<br/>
+                            contact@am2iconference.org </p>
+                                    </div>
+                                    <div class="card scale-on-scroll">
+                                        <div style="font-size: 40px; margin-bottom: 16px;">🏨</div>
+                                        <h3 style="font-size: 18px; margin-bottom: 12px;">Accommodation</h3>
+                                        <p style="color: var(--muted); font-size: 14px;">
+                            Partner hotels available<br/>
+                            Special conference rates </p>
+                                    </div>
+                                </div>
+                                <div class="scale-on-scroll" style="margin-top: 40px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid rgba(56,189,248,0.3); box-shadow: var(--shadow);">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52065.33367676767!2d-0.633333!3d35.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7f0026041f7063%3A0x40165e316023300!2sSidi%20Bel%20Abb%C3%A8s!5e0!3m2!1sen!2sdz!4v1700000000000!5m2!1sen!2sdz" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Conference Location Map">
+</iframe>
+                                </div>
+                            </section>
+                            <!-- Footer -->
+                            <footer class="footer">
+                                <div class="footer-content">
+                                    <div class="footer-grid">
+                                        <div>
+                                            <div class="footer-logo">AM2I 2026</div>
+                                            <p style="color: var(--muted); font-size: 14px; max-width: 300px;">
+                                Advanced Materials, Manufacturing, AI & Industrial Innovation Conference </p>
+                                        </div>
+                                        <div>
+                                            <h3 style="font-size: 16px; color: var(--text); margin-bottom: 16px;">Quick Links</h3>
+                                            <div class="footer-links"><a href="#about" class="footer-link">About Conference</a><a href="#tracks" class="footer-link">Call for Papers</a><a href="#speakers" class="footer-link">Speakers</a><a href="#venue" class="footer-link">Venue</a>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 style="font-size: 16px; color: var(--text); margin-bottom: 16px;">Resources</h3>
+                                            <div class="footer-links"><a href="#" class="footer-link">Submission Guidelines</a><a href="#" class="footer-link">Registration</a><a href="#" class="footer-link">Accommodation</a><a href="#" class="footer-link">Contact Us</a>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 style="font-size: 16px; color: var(--text); margin-bottom: 16px;">Important Dates</h3>
+                                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                                <div>
+                                                    <div style="font-size: 14px; color: var(--accent);">July 15, 2025</div>
+                                                    <div style="font-size: 13px; color: var(--muted);">Paper Submission</div>
+                                                </div>
+                                                <div>
+                                                    <div style="font-size: 14px; color: var(--accent);">Sep 15, 2025</div>
+                                                    <div style="font-size: 13px; color: var(--muted);">Notification</div>
+                                                </div>
+                                                <div>
+                                                    <div style="font-size: 14px; color: var(--accent);">Nov 12-14, 2025</div>
+                                                    <div style="font-size: 13px; color: var(--muted);">Conference</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-bottom">
+                                        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px;"><span style="font-size: 14px; color: var(--muted);">
+                                © 2025 AM2I Innovation Week. All rights reserved. </span>
+                                            <div style="display: flex; gap: 20px;"><a href="#" style="color: var(--muted); font-size: 14px;">Privacy Policy</a><a href="#" style="color: var(--muted); font-size: 14px;">Terms of Service</a><a href="#" style="color: var(--muted); font-size: 14px;">Code of Conduct</a>
+                                            </div>
+                                        </div>
+                                        <p style="color: var(--muted); font-size: 13px;">
+                            Organized by Djillali Liabès University, Sidi Bel Abbès, Algeria </p>
+                                    </div>
+                                </div>
+                            </footer>
         </main>
-        <!-- MODALS -->
-        <div id="submissionModal" class="modal">
+        <!-- Modals -->
+        <div id="submissionModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="submissionModalTitle">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 style="font-size: 18px; color: #e5e7eb; margin: 0;">Submit Your Paper - Microsoft CMT</h2>
-                    <button class="modal-close" onclick="closeSubmissionModal()">×</button>
+                    <h2 id="submissionModalTitle" class="modal-title">Submit Your Paper - Microsoft CMT</h2>
+                    <button class="modal-close" onclick="closeSubmissionModal()" aria-label="Close modal">×</button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="./Academic Conference 2025_files/saved_resource.html" title="CMT Submission"></iframe>
+                    <iframe src="./Academic Conference 2025_files/saved_resource.html" title="CMT Submission Portal" style="width: 100%; height: 600px; border: none;">
+</iframe>
                 </div>
             </div>
         </div>
-        <div id="registrationModal" class="modal">
+        <div id="registrationModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="registrationModalTitle">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 style="font-size: 18px; color: #e5e7eb; margin: 0;">Conference Registration</h2>
-                    <button class="modal-close" onclick="closeRegistrationModal()">×</button>
+                    <h2 id="registrationModalTitle" class="modal-title">Conference Registration</h2>
+                    <button class="modal-close" onclick="closeRegistrationModal()" aria-label="Close modal">×</button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="./Academic Conference 2025_files/viewform.html" width="640" height="1497" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    <iframe src="./Academic Conference 2025_files/viewform.html" title="Conference Registration Form" style="width: 100%; height: 600px; border: none;">
+</iframe>
                 </div>
             </div>
         </div>
         <script>
-    // Carousel functionality
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const indicators = document.querySelectorAll('.indicator');
-    const track = document.getElementById('carouselTrack');
+            // Initialize on DOM load
+            document.addEventListener('DOMContentLoaded', function() {
+                // Remove unresolved class for fade-in effect
+                document.body.classList.remove('unresolved');
+                
+                // Initialize carousel
+                initializeCarousel();
+                
+                // Initialize scroll animations
+                initializeAnimations();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Initialize mobile menu
+                initializeMobileMenu();
+                
+                // Initialize scroll progress
+                initializeScrollProgress();
+            });
 
-    function updateCarousel() {
-      track.style.transform = `translateX(-${currentSlide * 100}%)`;
-      indicators.forEach((ind, idx) => {
-        ind.classList.toggle('active', idx === currentSlide);
-      });
-    }
+            // Carousel functionality
+            let currentSlide = 0;
+            let carouselInterval;
+            const slides = document.querySelectorAll('.carousel-slide');
+            const track = document.getElementById('carouselTrack');
+            const indicatorsContainer = document.getElementById('carouselIndicators');
 
-    function changeSlide(direction) {
-      currentSlide += direction;
-      if (currentSlide < 0) currentSlide = slides.length - 1;
-      if (currentSlide >= slides.length) currentSlide = 0;
-      updateCarousel();
-    }
+            function initializeCarousel() {
+                // Create indicators
+                slides.forEach((_, index) => {
+                    const indicator = document.createElement('div');
+                    indicator.className = 'indicator' + (index === 0 ? ' active' : '');
+                    indicator.addEventListener('click', () => goToSlide(index));
+                    indicatorsContainer.appendChild(indicator);
+                });
 
-    function goToSlide(index) {
-      currentSlide = index;
-      updateCarousel();
-    }
+                updateCarousel();
+                startAutoPlay();
+            }
 
-    // Auto-play carousel
-    setInterval(() => changeSlide(1), 5000);
+            function updateCarousel() {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update indicators
+                document.querySelectorAll('.indicator').forEach((ind, idx) => {
+                    ind.classList.toggle('active', idx === currentSlide);
+                });
+            }
 
-    // Scroll animations
-    function checkScroll() {
-      const elements = document.querySelectorAll('.animate-on-scroll, .scale-on-scroll');
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight * 0.85;
-        if (isVisible) {
-          el.classList.add('visible');
-        }
-      });
-    }
+            function changeSlide(direction) {
+                currentSlide = (currentSlide + direction + slides.length) % slides.length;
+                updateCarousel();
+                resetAutoPlay();
+            }
 
-    // Scroll to top button
-    const scrollTopBtn = document.getElementById('scrollTop');
-    function toggleScrollTop() {
-      if (window.scrollY > 300) {
-        scrollTopBtn.classList.add('visible');
-      } else {
-        scrollTopBtn.classList.remove('visible');
-      }
-    }
+            function goToSlide(index) {
+                currentSlide = index;
+                updateCarousel();
+                resetAutoPlay();
+            }
 
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+            function startAutoPlay() {
+                carouselInterval = setInterval(() => changeSlide(1), 5000);
+            }
 
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    function handleNavbar() {
-      if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }
+            function resetAutoPlay() {
+                clearInterval(carouselInterval);
+                startAutoPlay();
+            }
 
-    // Event listeners
-    window.addEventListener('scroll', () => {
-      checkScroll();
-      toggleScrollTop();
-      handleNavbar();
-    });
+            // Scroll animations
+            function initializeAnimations() {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                };
 
-    window.addEventListener('load', checkScroll);
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, observerOptions);
 
-    // Modal functions
-    function openSubmissionModal() {
-      document.getElementById('submissionModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+                // Observe all animate-on-scroll elements
+                document.querySelectorAll('.animate-on-scroll, .scale-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+            }
 
-    function closeSubmissionModal() {
-      document.getElementById('submissionModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
+            // Scroll progress
+            function initializeScrollProgress() {
+                const progressBar = document.getElementById('progressBar');
+                
+                window.addEventListener('scroll', () => {
+                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrolled = (winScroll / height) * 100;
+                    
+                    if (progressBar) {
+                        progressBar.style.transform = `scaleX(${scrolled / 100})`;
+                    }
+                });
+            }
 
-    function openRegistrationModal() {
-      document.getElementById('registrationModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+            // Mobile menu
+            function initializeMobileMenu() {
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+                const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 
-    function closeRegistrationModal() {
-      document.getElementById('registrationModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+                mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-    // Close modals on background click
-    document.getElementById('submissionModal').addEventListener('click', function(e) {
-      if (e.target === this) closeSubmissionModal();
-    });
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
 
-    document.getElementById('registrationModal').addEventListener('click', function(e) {
-      if (e.target === this) closeRegistrationModal();
-    });
+                // Close menu on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                });
 
-    // Close modals on ESC key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeSubmissionModal();
-        closeRegistrationModal();
-      }
-    });
+                function toggleMobileMenu() {
+                    mobileMenuBtn.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    mobileMenuOverlay.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                }
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
+                function closeMobileMenu() {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                }
+            }
+
+            // Event listeners setup
+            function setupEventListeners() {
+                const scrollTopBtn = document.getElementById('scrollTop');
+                const navbar = document.getElementById('navbar');
+                
+                // Scroll to top button
+                window.addEventListener('scroll', () => {
+                    // Show/hide scroll to top button
+                    if (window.scrollY > 300) {
+                        scrollTopBtn.classList.add('visible');
+                    } else {
+                        scrollTopBtn.classList.remove('visible');
+                    }
+                    
+                    // Navbar scroll effect
+                    if (window.scrollY > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+                
+                scrollTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                // Smooth scroll for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        const href = this.getAttribute('href');
+                        if (href === '#') return;
+                        
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            
+                            // Update active nav link
+                            updateActiveNavLink(href);
+                        }
+                    });
+                });
+                
+                // Set current year in footer
+                document.querySelector('.footer-bottom span').textContent = 
+                    document.querySelector('.footer-bottom span').textContent.replace('2025', new Date().getFullYear());
+            }
+
+            // Update active navigation link
+            function updateActiveNavLink(hash) {
+                // Update desktop nav links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Update mobile menu links
+                document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Modal functions
+            function openSubmissionModal() {
+                const modal = document.getElementById('submissionModal');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Focus on modal for accessibility
+                setTimeout(() => {
+                    modal.querySelector('.modal-close').focus();
+                }, 100);
+            }
+
+            function closeSubmissionModal() {
+                const modal = document.getElementById('submissionModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function openRegistrationModal() {
+                const modal = document.getElementById('registrationModal');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Focus on modal for accessibility
+                setTimeout(() => {
+                    modal.querySelector('.modal-close').focus();
+                }, 100);
+            }
+
+            function closeRegistrationModal() {
+                const modal = document.getElementById('registrationModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Close modals on background click and escape key
+            document.addEventListener('click', (e) => {
+                const submissionModal = document.getElementById('submissionModal');
+                const registrationModal = document.getElementById('registrationModal');
+                
+                if (e.target === submissionModal) {
+                    closeSubmissionModal();
+                }
+                if (e.target === registrationModal) {
+                    closeRegistrationModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeSubmissionModal();
+                    closeRegistrationModal();
+                }
+            });
+
+            // Intersection Observer for lazy loading images
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute('data-src');
+                        if (src) {
+                            img.src = src;
+                            img.removeAttribute('data-src');
+                        }
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            // Observe images for lazy loading
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        </script>
     </body>
 </html>
